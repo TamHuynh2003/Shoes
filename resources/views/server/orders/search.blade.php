@@ -3,18 +3,26 @@
     <td><strong>{{ $loop->iteration }}</strong></td>
 
     <td><span>{{ $orders->order_date }}</span></td>
-    <td><span>{{ number_format($orders->total_price )}}</span></td>
+    <td><span>{{ number_format($orders->total_price) }}</span></td>
 
     <td><span>{{ $orders->users->fullname }}</span></td>
-    {{-- <td><span>{{ $orders->discounts->name }}</span></td> --}}
+
+    <td>
+        <span>
+            @if ($orders->discount)
+            {{ $orders->discount->name }}
+            @else
+            Không có mã!
+            @endif
+        </span>
+    </td>
 
     <td><span>{{ $orders->payment_methods->name }}</span></td>
     {{-- <td>
         <span>{{ $orders->status->name }}</span>
     </td> --}}
     <td>
-        <span @if($orders->status_id == 1)
-            style="color: rgb(232, 186, 17);"
+        <span @if ($orders->status_id == 1) style="color: rgb(232, 186, 17);"
             @elseif($orders->status_id == 2)
             style="color: rgb(239, 116, 14)"
             @elseif($orders->status_id == 3)
@@ -22,16 +30,14 @@
             @elseif($orders->status_id == 4)
             style="color: rgb(15, 127, 224);"
             @elseif($orders->status_id == 5)
-            style="color:forestgreen"
-            @endif
-            >
+            style="color:forestgreen" @endif>
             {{ $orders->status->name }}
         </span>
     </td>
     <td>
         <div class="d-flex align-items-stretch">
             <!--Verify-->
-            @if($orders->status_id == 1)
+            @if ($orders->status_id == 1)
             <a data-id="{{ $orders->id }}" class="btn btn-sm btn-outline-primary border me-2" data-bs-toggle="tooltip"
                 data-action="cập nhập trạng thái đơn hàng thành đã duyệt"
                 href="{{ route('orders.status', ['id' => $orders->id, 'status' => '2']) }}"
@@ -60,7 +66,6 @@
             <!--Details-->
             <a class=" btn btn-sm btn-outline-info border me-2" data-bs-original-title=" Chi Tiết"
                 href="{{route('orders.show',['id' => $orders->id])}}" data-bs-toggle="tooltip">
-
                 <i class="fe fe-info"></i>
             </a>
 
@@ -77,29 +82,28 @@
 
 <script>
     document.addEventListener('DOMContentLoaded', function() {
-        document.querySelectorAll('.delete-link').forEach(function(link) {
-            link.addEventListener('click', function(event) {
-                event.preventDefault();
+            document.querySelectorAll('.delete-link').forEach(function(link) {
+                link.addEventListener('click', function(event) {
+                    event.preventDefault();
 
-                var route = this.getAttribute('data-route');
-                var id = this.getAttribute('data-id');
-                var action = this.getAttribute('data-action');
+                    var route = this.getAttribute('data-route');
+                    var id = this.getAttribute('data-id');
+                    var action = this.getAttribute('data-action');
 
-                Swal.fire({
-                    title: 'Xác nhận?',
-                    text: 'Bạn có chắc muốn ' + action + ' hóa đơn ' + id + ' không?',
-                    icon: 'warning',
-                    showCancelButton: true,
-                    confirmButtonText: 'Đồng ý',
-                    cancelButtonText: 'Hủy bỏ',
-                }).then(function(result) {
-                    if (result.isConfirmed) {
-                        window.location.href = route;
-                    }
+                    Swal.fire({
+                        title: 'Xác nhận?',
+                        text: 'Bạn có chắc muốn ' + action + ' hóa đơn ' + id + ' không?',
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonText: 'Đồng ý',
+                        cancelButtonText: 'Hủy bỏ',
+                    }).then(function(result) {
+                        if (result.isConfirmed) {
+                            window.location.href = route;
+                        }
+                    });
                 });
             });
         });
-    });
 </script>
-
 @endforeach
