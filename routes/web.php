@@ -6,18 +6,17 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Client\BlogController;
 use App\Http\Controllers\Client\AboutController;
 use App\Http\Controllers\Client\ContactController;
-
 use App\Http\Controllers\Client\HomeController;
 use App\Http\Controllers\Client\ProductController;
-
 use App\Http\Controllers\Client\CartController;
 use App\Http\Controllers\Client\CheckoutController;
-
 use App\Http\Controllers\Client\WishlistController;
+use App\Http\Controllers\Client\PaymentController;
+use App\Http\Controllers\Client\ProfileController;
 
 
 
-//Admins 
+//Admins
 use App\Http\Controllers\Server\AdminsController;
 use App\Http\Controllers\Server\UsersController;
 use App\Http\Controllers\Server\ProvidersController;
@@ -77,12 +76,25 @@ Route::post('/xoa-yeu-thich', [WishlistController::class, 'delete'])->name('wish
 //
 Route::get('/thanh-toan', [CheckoutController::class, 'index'])->name('checkout')->middleware('auth:users');
 Route::post('/thanh-toan', [CheckoutController::class, 'process'])->name('process_payment')->middleware('auth:users');
+//
+Route::get('/payment', [PaymentController::class, 'index'])->name('vnpay_payment');
+Route::post('/vnpay/create-payment', [PaymentController::class, 'createPayment'])->name('create_payment');
+Route::post('/vnpay/return-payment', [PaymentController::class, 'returnPayment'])->name('payment_handle');
+//
+Route::get('/thong-tin-ca-nhan', [ProfileController::class, 'index'])->name('profile_user');
+Route::post('/chinh-sua-thong-tin', [ProfileController::class, 'update_profile'])->name('update_profile_user');
+Route::post('/chinh-sua-mat-khau', [ProfileController::class, 'update_password'])->name('update_password_profile_user');
+Route::post('/chinh-sua-anh', [ProfileController::class, 'update_avatar'])->name('update_avatar_profile_user');
 
 //
 Route::get('/blog', [BlogController::class, 'index'])->name('blog');
+//
 Route::get('/lien-he', [ContactController::class, 'index'])->name('contact');
+//
 Route::get('/ve-chung-toi', [AboutController::class, 'index'])->name('about');
+//
 Route::get('/san-pham', [ProductController::class, 'index'])->name('products');
+//
 Route::get('/chi-tiet-san-pham/{id}', [ProductController::class, 'detail'])->name('product_detail');
 
 

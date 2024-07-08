@@ -90,15 +90,7 @@ class UsersController extends Controller
         }
     }
 
-    public function profile()
-    {
-        $users = Auth::user();
-
-        $genders = Genders::all();
-        $status = UserStates::all();
-
-        return view('client.profile', compact('users', 'genders', 'status'));
-    }
+    
 
     // public function updateProfile(Request $req)
     // {

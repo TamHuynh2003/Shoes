@@ -17,7 +17,7 @@ class OrdersController extends Controller
     public function index()
     {
         // $listOrders = Orders::all()->where('order_states_id', 1, 2, 4, 5);
-        $listOrders = Orders::whereIn('status_id', [1, 2, 4, 5])->get();
+        $listOrders = Orders::whereIn('status_id', [1, 2, 4, 5])->with('discount')->get();
 
         return view('server.orders.index', compact('listOrders'));
     }
