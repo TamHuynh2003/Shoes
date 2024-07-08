@@ -51,7 +51,7 @@
                                 <th>Ngày Đặt Hàng</th>
                                 <th>Tổng Tiền</th>
                                 <th>Người Đặt</th>
-                                {{-- <th>Mã giảm Giá</th> --}}
+                                <th>Mã giảm Giá</th>
                                 <th>Thanh Toán</th>
                                 <th>Trạng Thái</th>
                                 <th>Chức Năng</th>

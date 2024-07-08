@@ -3,7 +3,7 @@
     <td><strong>{{ $loop->iteration }}</strong></td>
 
     <td><span>{{ $orders->order_date }}</span></td>
-    <td><span>{{ number_format($orders->total_price) }}</span></td>
+    <td><span>{{ number_format($orders->selling_price*$orders->quantity) }}</span></td>
 
     <td><span>{{ $orders->users->fullname }}</span></td>
 

@@ -13,17 +13,17 @@ return new class extends Migration
     {
         Schema::table('order_details', function (Blueprint $table) {
 
-            $table->foreignId('order_id')->after('selling_price')->constrained(
+            $table->foreignId('orders_id')->after('selling_price')->constrained(
                 table: 'orders',
                 indexName: 'order_details_orders_id'
             );
 
-            $table->foreignId('products_id')->after('orders_id')->constrained(
+            $table->foreignId('product_id')->after('orders_id')->constrained(
                 table: 'products',
                 indexName: 'order_details_products_id'
             );
 
-            $table->foreignId('colors_id')->after('products_id')->constrained(
+            $table->foreignId('colors_id')->after('product_id')->constrained(
                 table: 'colors',
                 indexName: 'order_details_colors_id'
             );

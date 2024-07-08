@@ -11,6 +11,11 @@ class OrderDetails extends Model
 
     protected $table = 'order_details';
 
+    public function images()
+    {
+        return $this->hasMany(ProductImages::class, 'products_id');
+    }
+
     public function order()
     {
         return $this->belongsTo(Orders::class);
