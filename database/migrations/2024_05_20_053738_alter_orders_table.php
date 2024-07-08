@@ -23,7 +23,7 @@ return new class extends Migration
                 indexName: 'orders_admins_id'
             );
 
-            $table->foreignId('discounts_id')->after('admins_id')->constrained(
+            $table->foreignId('discount_id')->after('admins_id')->constrained(
                 table: 'discounts',
                 indexName: 'orders_discounts_id'
             );

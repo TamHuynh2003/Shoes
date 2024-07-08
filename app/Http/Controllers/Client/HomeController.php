@@ -12,7 +12,7 @@ class HomeController extends Controller
     {
         $listSlides = SlideShows::where('is_deleted', 1)->get();
 
-        $list_products = Products::all();
+        $list_products = Products::where('rating', 5)->get();
         return view('client.home.index', compact('list_products', 'listSlides'));
     }
 }

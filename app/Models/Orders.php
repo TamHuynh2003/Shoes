@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 
 class Orders extends Model
 {
@@ -21,7 +22,7 @@ class Orders extends Model
         return $this->belongsTo(Admins::class);
     }
 
-    public function discounts()
+    public function discount()
     {
         return $this->belongsTo(Discounts::class);
     }
@@ -35,4 +36,11 @@ class Orders extends Model
     {
         return $this->belongsTo(OrderStates::class);
     }
+
+    public function order_details()
+    {
+        return $this->hasMany(OrderDetails::class)->with('product');
+    }
+
+
 }
