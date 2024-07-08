@@ -20,29 +20,16 @@
                             <tr class="table_row">
                                 <td class="column-1">
                                     <div class="how-itemcart1">
-                                        <img src="{{ asset('user_template/images/item-cart-04.jpg') }}" alt="IMG">
+                                        <img src="{{ asset($item->images->first()->url) }}" alt="IMG-PRODUCT"
+                                            style="width: 100px;height: 100px;">
                                     </div>
                                 </td>
                                 <td class="column-2">{{ $item->product->name }}</td>
-                                {{-- <td class="column-3">
-                                    <div class="wrap-num-product flex-w m-l-auto m-r-0">
-                                        <div class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m">
-                                            <i class="fs-16 zmdi zmdi-minus"></i>
-                                        </div>
-
-                                        <input class="mtext-104 cl3 txt-center num-product" type="number"
-                                            name="quantity" readonly value="{{ $item->quantity }}">
-
-                                        <div class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m">
-                                            <i class="fs-16 zmdi zmdi-plus"></i>
-                                        </div>
-                                    </div>
-                                </td> --}}
-                                <td class="column-3">{{ $item->selling_price }}</td>
+                                <td class="column-3">{{ number_format($item->selling_price) }}</td>
                                 <td class="column-3">
                                     <form action="{{ route('wishlist_delete') }}" method="POST">
                                         @csrf
-                                        <button type="submit" name="id" value="{{ $item->id }}">Xoá</button>
+                                        <button type="submit" name="id" value="{{ $item->id }}">X</button>
                                     </form>
                                 </td>
                             </tr>
@@ -52,13 +39,7 @@
 
                     <div class="flex-w flex-sb-m bor15 p-t-18 p-b-15 p-lr-40 p-lr-15-sm">
                         <div class="flex-w flex-m m-r-20 m-tb-5">
-                            {{-- <input class="stext-104 cl2 plh4 size-117 bor13 p-lr-20 m-r-10 m-tb-5" type="text"
-                                name="coupon" placeholder="Mã Giảm Giá">
 
-                            <div
-                                class="flex-c-m stext-101 cl2 size-118 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer m-tb-5">
-                                Áp Dụng
-                            </div> --}}
                         </div>
                         <div class="form-group">
                             <a href="{{ route('products') }}"

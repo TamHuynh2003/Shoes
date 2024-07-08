@@ -48,15 +48,25 @@ class ProductsController extends Controller
         return view('server.products.search', compact('listProducts'));
     }
 
+    // public function show($id)
+    // {
+    //     // $products = Products::find($id);
+    //     // $productDetails = ProductDetails::find($id);
+    //     // $productImages = ProductImages::find($id);
+    //     $products = Products::with(['images', 'productDetails'])->find($id);
+
+    //     $listColors = ProductDetails::where('product_id', $id)->distinct()->get('color_id');
+    //     $listSizes = ProductDetails::where('product_id', $id)->distinct()->get('size_id');
+
+    //     return view('server.products.details', compact('products', 'listColors', 'listSizes'));
+    // }
+
     public function show($id)
     {
-        // $products = Products::find($id);
-        // $productDetails = ProductDetails::find($id);
-        // $productImages = ProductImages::find($id);
         $products = Products::with(['images', 'productDetails'])->find($id);
 
-        $listColors = ProductDetails::where('products_id', $id)->distinct()->get('colors_id');
-        $listSizes = ProductDetails::where('products_id', $id)->distinct()->get('sizes_id');
+        $listColors = ProductDetails::where('product_id', $id)->distinct()->get('color_id');
+        $listSizes = ProductDetails::where('product_id', $id)->distinct()->get('size_id');
 
         return view('server.products.details', compact('products', 'listColors', 'listSizes'));
     }
@@ -66,9 +76,9 @@ class ProductsController extends Controller
         $color = $request->input('color_id');
         $size = $request->input('size_id');
 
-        $quantity = ProductDetails::where('colors_id', $color)
-            ->where('sizes_id', $size)
-            ->where('products_id', $id)
+        $quantity = ProductDetails::where('color_id', $color)
+            ->where('size_id', $size)
+            ->where('product_id', $id)
             ->value('quantity');
 
         if ($quantity == null) {
@@ -126,11 +136,11 @@ class ProductsController extends Controller
 
         $productDetail = new ProductDetails();
 
-        $productDetail->products_id = $products->id;
+        $productDetail->product_id = $products->id;
         $productDetail->quantity = 30;
 
-        $productDetail->colors_id = $req->colors_id;
-        $productDetail->sizes_id = $req->sizes_id;
+        $productDetail->color_id = $req->colors_id;
+        $productDetail->size_id = $req->sizes_id;
 
         $productDetail->is_deleted = 1;
         $productDetail->save();

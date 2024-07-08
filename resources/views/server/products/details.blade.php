@@ -100,7 +100,7 @@
                         <select class="form-select" id="color">
 
                             @foreach($listColors as $detail)
-                            <option value="{{$detail->colors_id}}">{{$detail->colors[0]->name}}</option>
+                            <option value="{{$detail->color_id}}">{{$detail->color->name}}</option>
                             @endforeach
 
                         </select>
@@ -112,7 +112,7 @@
                         <select class="form-select" id="size">
 
                             @foreach($listSizes as $detail)
-                            <option value="{{$detail->sizes_id}}">{{$detail->sizes[0]->name}}</option>
+                            <option value="{{$detail->size_id}}">{{$detail->size->name}}</option>
                             @endforeach
 
                         </select>
@@ -120,7 +120,7 @@
 
                     <div class="mb-3">
                         <label class="form-label">Số Lượng Tồn</label>
-                        <input type="text" name="quantity" id="quantity" readonly class="form-control">
+                        <input type="number" name="quantity" id="quantity" readonly class="form-control">
                     </div>
 
                     <div class="mb-3">

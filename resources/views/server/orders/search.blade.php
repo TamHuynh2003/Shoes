@@ -6,7 +6,7 @@
     <td><span>{{ number_format($orders->total_price )}}</span></td>
 
     <td><span>{{ $orders->users->fullname }}</span></td>
-    <td><span>{{ $orders->discounts->name }}</span></td>
+    {{-- <td><span>{{ $orders->discounts->name }}</span></td> --}}
 
     <td><span>{{ $orders->payment_methods->name }}</span></td>
     {{-- <td>
@@ -60,6 +60,7 @@
             <!--Details-->
             <a class=" btn btn-sm btn-outline-info border me-2" data-bs-original-title=" Chi Tiết"
                 href="{{route('orders.show',['id' => $orders->id])}}" data-bs-toggle="tooltip">
+
                 <i class="fe fe-info"></i>
             </a>
 

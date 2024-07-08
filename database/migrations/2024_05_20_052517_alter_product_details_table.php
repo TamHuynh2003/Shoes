@@ -15,17 +15,17 @@ return new class extends Migration
 
             $table->foreignId('product_id')->after('quantity')->constrained(
                 table: 'products',
-                indexName: 'product_details_categories_id'
+                indexName: 'product_details_product_id'
             );
 
             $table->foreignId('color_id')->after('product_id')->constrained(
                 table: 'colors',
-                indexName: 'product_details_colors_id'
+                indexName: 'product_details_color_id'
             );
 
             $table->foreignId('size_id')->after('color_id')->constrained(
                 table: 'sizes',
-                indexName: 'product_details_sizes_id'
+                indexName: 'product_details_size_id'
             );
         });
     }

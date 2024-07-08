@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use Faker\Provider\bg_BG\Payment;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 

@@ -18,12 +18,12 @@ return new class extends Migration
                 indexName: 'orders_users_id'
             );
 
-            $table->foreignId('admins_id')->after('users_id')->constrained(
+            $table->foreignId('admins_id')->nullable()->after('users_id')->constrained(
                 table: 'admins',
                 indexName: 'orders_admins_id'
             );
 
-            $table->foreignId('discounts_id')->after('admins_id')->constrained(
+            $table->foreignId('discounts_id')->nullable()->after('admins_id')->constrained(
                 table: 'discounts',
                 indexName: 'orders_discounts_id'
             );

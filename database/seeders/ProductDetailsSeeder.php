@@ -12,7 +12,7 @@ class ProductDetailsSeeder extends Seeder
      */
     public function run(): void
     {
-        for ($i = 1; $i <= 8; $i++) {
+        for ($i = 1; $i <= 7; $i++) {
             for ($color = 1; $color <= 4; $color++) {
                 for ($size = 1; $size <= 4; $size++) {
                     ProductDetails::create([

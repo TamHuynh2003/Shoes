@@ -129,7 +129,7 @@ class OrdersController extends Controller
                 ->get();
 
             if ($productDetails->isEmpty()) {
-                return redirect()->route('server.orders.index')->with('alert', 'Hóa đơn không có sản phẩm nào!');
+                return redirect()->route('orders.index')->with('alert', 'Hóa đơn không có sản phẩm nào!');
             } else {
                 $productDetails[0]->quantity += $detail->quantity;
                 $productDetails[0]->save();
