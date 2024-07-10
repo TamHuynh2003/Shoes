@@ -15,14 +15,18 @@
     <div class="col-xxl">
         <div class="card mb-4">
             <div class="card-body">
-                <form method="POST" action="{{ route('slideshows.store') }}" enctype="multipart/form-data">
+                <form method="POST" action="" enctype="multipart/form-data">
                     @csrf
 
                     <div class="mb-3">
                         <label class="form-label">SlideShow</label>
 
-                        <input type="file" name="images" value="{{ old('images') }}" class="form-control">
+                        <input type="file" name="url" value="{{ old('url') }}" class="form-control">
+                        <br>
 
+                        @error('url')
+                        <div class="form-text" style="color:red;">{{ $message }}</div>
+                        @enderror
                     </div>
                     <br>
                     <div class="mb-3">

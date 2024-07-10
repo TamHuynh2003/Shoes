@@ -12,25 +12,26 @@
                         <table class="table-shopping-cart">
                             <tr class="table_head">
                                 <th class="column-1">Ảnh</th>
-                                <th class="column-2">Giày</th>
+                                <th class="column-1">Giày</th>
                                 <th class="column-3">Màu</th>
-                                <th class="column-4">Size</th>
-                                <th class="column-5">Số Lượng</th>
+                                <th class="column-3">Size</th>
+                                <th class="column-3">Số Lượng</th>
                                 <th class="column-6">Giá</th>
                                 <th class="column-7">Xóa</th>
                             </tr>
                             @foreach ($cart as $item)
                             <tr class="table_row">
                                 <td class="column-1">
-                                    <div class="how-itemcart1">
-                                        <img src="{{ asset('user_template/images/item-cart-04.jpg') }}" alt="IMG">
+                                    <div class="itemcart1">
+                                        <img src="{{ asset($item->images->first()->url) }}" alt="IMG-PRODUCT"
+                                            style="width: 80px;height: 100px;">
                                     </div>
                                 </td>
                                 <td class="column-2"> {{ $item->product_detail->product->name }}</td>
                                 <td class="column-3">{{ $item->product_detail->color->name }}</td>
-                                <td class="column-4">{{ $item->product_detail->size->name }}</td>
-                                <td class="column-5 pl-5">
-                                    <div class="wrap-num-product flex-w m-l-auto m-r-0">
+                                <td class="column-3">{{ $item->product_detail->size->name }}</td>
+                                <td class="column-3">
+                                    <div class="wrap-num-product flex-w m-r-40">
                                         <div class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m">
                                             <i class="fs-16 zmdi zmdi-minus"></i>
                                         </div>
@@ -43,11 +44,11 @@
                                         </div>
                                     </div>
                                 </td>
-                                <td class="column-6"> {{ $item->total_price }}</td>
+                                <td class="column-6"> {{ number_format($item->total_price) }}</td>
                                 <td class="column-7">
                                     <form action="{{ route('delete_cart') }}" method="POST">
                                         @csrf
-                                        <button type="submit" name="id" value="{{ $item->id }}">Xoá</button>
+                                        <button type="submit" name="id" value="{{ $item->id }}">X</button>
                                     </form>
                                 </td>
                             </tr>

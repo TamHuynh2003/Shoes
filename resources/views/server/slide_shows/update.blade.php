@@ -15,10 +15,8 @@
     <div class="col-xxl">
         <div class="card mb-4">
             <div class="card-body">
-                <form method="POST" action="{{ route('slideshows.update', ['id' => $slideshows->id]) }}"
-                    enctype="multipart/form-data">
+                <form method="POST" action="" enctype="multipart/form-data">
                     @csrf
-
 
                     <div class="mb-3">
                         <label class="form-label">Slideshow</label>

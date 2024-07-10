@@ -29,7 +29,7 @@ class CartController extends Controller
             ->where('quantity', ">=", $request->quantity)
             ->first();
         if ($product_detail == null) {
-            return "Hết hàng";
+            return "Sản phẩm đã hết hàng";
         }
         $cart = new CustomersCarts();
         $cart->quantity = $request->quantity;

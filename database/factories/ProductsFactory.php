@@ -17,7 +17,6 @@ class ProductsFactory extends Factory
      *
      * @return array<string, mixed>
      */
-
     protected $model = Products::class;
 
     protected static $usedNames = [];
@@ -163,25 +162,15 @@ class ProductsFactory extends Factory
 
         $sellingPrice = $this->faker->randomElement($prices);
 
-
         return [
             'name' => $productDetails['name'],
             'descriptions' => $productDetails['descriptions'],
-
-            // 'purchase_price' => $this->faker->numberBetween(300000, 1000000),
-            // 'selling_price' => $this->faker->numberBetween(400000, 4000000) + 200000,
-
-            // 'purchase_price' => $this->faker->randomElement($purchasePrices),
-            // 'selling_price' => $this->faker->randomElement($sellingPrices),
-
             'purchase_price' => $purchasePrice,
             'selling_price' => $sellingPrice,
-
             'rating' => $this->faker->numberBetween(3, 5),
             'categories_id' => $categoryId,
             'providers_id' => $providerId,
             'is_deleted' => 1,
-            // 'is_deleted' => $this->faker->numberBetween(0, 1),
         ];
     }
 }

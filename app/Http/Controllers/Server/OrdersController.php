@@ -117,29 +117,29 @@ class OrdersController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy($id)
-    {
-        $orderDetails = OrderDetails::where('orders_id', $id)->get();
+    // public function destroy($id)
+    // {
+    //     $orderDetails = OrderDetails::where('orders_id', $id)->get();
 
-        foreach ($orderDetails as $detail) {
+    //     foreach ($orderDetails as $detail) {
 
-            $productDetails = ProductDetails::where('products_id', $detail->products_id)
-                ->where('colors_id', $detail->colors_id)
-                ->where('sizes_id', $detail->sizes_id)
-                ->get();
+    //         $productDetails = ProductDetails::where('products_id', $detail->products_id)
+    //             ->where('colors_id', $detail->colors_id)
+    //             ->where('sizes_id', $detail->sizes_id)
+    //             ->get();
 
-            if ($productDetails->isEmpty()) {
-                return redirect()->route('server.orders.index')->with('alert', 'Hóa đơn không có sản phẩm nào!');
-            } else {
-                $productDetails[0]->quantity += $detail->quantity;
-                $productDetails[0]->save();
-            }
-        }
-        $orders = Orders::where('id', $id)->get();
+    //         if ($productDetails->isEmpty()) {
+    //             return redirect()->route('orders.index')->with('alert', 'Hóa đơn không có sản phẩm nào!');
+    //         } else {
+    //             $productDetails[0]->quantity += $detail->quantity;
+    //             $productDetails[0]->save();
+    //         }
+    //     }
+    //     $orders = Orders::where('id', $id)->get();
 
-        $orders[0]->status_id = 3;
-        $orders[0]->save();
+    //     $orders[0]->status_id = 3;
+    //     $orders[0]->save();
 
-        return redirect()->route('orders.index')->with('alert', 'Xóa đơn hàng thành công');
-    }
+    //     return redirect()->route('orders.index')->with('alert', 'Xóa đơn hàng thành công');
+    // }
 }

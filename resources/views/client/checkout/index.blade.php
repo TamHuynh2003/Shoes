@@ -74,7 +74,8 @@
                                             <tr>
                                                 <td>{{ $item->product_detail->product->name }} <strong
                                                         class="mx-2">x</strong> {{ $item->quantity }}</td>
-                                                <td>{{ $item->product_detail->product->selling_price * $item->quantity
+                                                <td>{{ number_format($item->product_detail->product->selling_price *
+                                                    $item->quantity)
                                                     }}
                                                     VND</td>
                                             </tr>
@@ -82,7 +83,7 @@
                                             <tr>
                                                 <td>Tổng Cộng:
                                                 </td>
-                                                <td>{{ $total }}
+                                                <td>{{ number_format($total) }}
                                                     VND</td>
                                             </tr>
                                         </tbody>

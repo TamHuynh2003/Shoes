@@ -18,17 +18,17 @@ return new class extends Migration
                 indexName: 'orders_users_id'
             );
 
-            $table->foreignId('admins_id')->after('users_id')->constrained(
+            $table->foreignId('admins_id')->nullable()->after('users_id')->constrained(
                 table: 'admins',
                 indexName: 'orders_admins_id'
             );
 
-            $table->foreignId('discount_id')->after('admins_id')->constrained(
+            $table->foreignId('discount_id')->nullable()->after('admins_id')->constrained(
                 table: 'discounts',
                 indexName: 'orders_discounts_id'
             );
 
-            $table->foreignId('payment_methods_id')->after('discounts_id')->constrained(
+            $table->foreignId('payment_methods_id')->after('discount_id')->constrained(
                 table: 'payment_methods',
                 indexName: 'orders_payment_methods_id'
             );
@@ -47,9 +47,9 @@ return new class extends Migration
     {
         Schema::table('orders', function (Blueprint $table) {
 
-            $table->dropForeign(['users_id', 'admins_id', 'discounts_id', 'payment_methods_id', 'status_id']);
+            $table->dropForeign(['users_id', 'admins_id', 'discount_id', 'payment_methods_id', 'status_id']);
 
-            $table->dropColumn(['users_id', 'admins_id', 'discounts_id', 'payment_methods_id', 'status_id']);
+            $table->dropColumn(['users_id', 'admins_id', 'discount_id', 'payment_methods_id', 'status_id']);
         });
     }
 };

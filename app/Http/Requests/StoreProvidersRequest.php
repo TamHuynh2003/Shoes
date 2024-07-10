@@ -41,8 +41,8 @@ class StoreProvidersRequest extends FormRequest
             'min' => ":attribute không được nhỏ hơn :min kí tự",
             'max' => ":attribute không được lớn hơn :min kí tự",
 
-            'email' => ":attribute không hợp lệ",
-            'regex' => ":attribute không hợp lệ",
+            'email' => ":attribute không đúng định dạng",
+            'regex' => ":attribute không đủ 10 số",
 
         ];
     }

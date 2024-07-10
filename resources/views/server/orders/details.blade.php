@@ -37,7 +37,7 @@
                     <strong>{{ $loop->iteration }}</strong>
                 </td>
 
-                <td>{{ $orderDetails->products->name }}</td>
+                <td>{{ $orderDetails->product->name }}</td>
                 <td>{{number_format( $orderDetails->selling_price )}}</td>
 
                 <td>{{ $orderDetails->quantity }}</td>

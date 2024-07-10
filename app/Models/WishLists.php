@@ -11,6 +11,11 @@ class WishLists extends Model
 
     protected $table = 'wish_lists';
 
+    public function images()
+    {
+        return $this->hasMany(ProductImages::class, 'products_id');
+    }
+
     public function product()
     {
         return $this->belongsTo(Products::class);

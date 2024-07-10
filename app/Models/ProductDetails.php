@@ -13,16 +13,16 @@ class ProductDetails extends Model
 
     public function product()
     {
-        return $this->belongsTo(Products::class);
+        return $this->belongsTo(Products::class, 'product_id');
     }
 
     public function color()
     {
-        return $this->belongsTo(Colors::class);
+        return $this->belongsTo(Colors::class, 'color_id');
     }
 
     public function size()
     {
-        return $this->belongsTo(Sizes::class);
+        return $this->belongsTo(Sizes::class, 'size_id');
     }
 }

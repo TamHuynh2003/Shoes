@@ -26,13 +26,12 @@ class CheckoutController extends Controller
     public function process(Request $request)
     {
         $paymentMethods = PaymentMethods::find($request->payment_method_id);
-        if($paymentMethods->id == 1)
-        {
-            return "Chưa làm";
-            // return redirect()->route('vnpay_payment');
-        }
-        if($paymentMethods->id == 2)
-        {
+        // if($paymentMethods->id == 1)
+        // {
+        //     return "Chưa làm";
+        //     // return redirect()->route('vnpay_payment');
+        // }
+        if ($paymentMethods->id == 1) {
             return redirect()->route('vnpay_payment');
         }
         $carts = CustomersCarts::where('users_id', auth('users')->user()->id)->with('product_detail')->get();
@@ -49,10 +48,10 @@ class CheckoutController extends Controller
 
         foreach ($carts as $item) {
             $orderDetail = new OrderDetails();
-            $orderDetail->order_id = $order->id;
+            $orderDetail->orders_id = $order->id;
             $orderDetail->quantity = $item->quantity;
             $orderDetail->selling_price = $item->product_detail->product->selling_price;
-            $orderDetail->products_id = $item->product_detail->product->id;
+            $orderDetail->product_id = $item->product_detail->product->id;
             $orderDetail->colors_id = $item->product_detail->color_id;
             $orderDetail->sizes_id = $item->product_detail->size_id;
             $orderDetail->save();

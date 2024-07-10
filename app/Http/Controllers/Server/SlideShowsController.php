@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Server;
 use App\Models\SlideShows;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreSlideShowsRequest;
 
 class SlideShowsController extends Controller
 {
@@ -59,13 +60,13 @@ class SlideShowsController extends Controller
     //     return view('server.slide_shows.search', compact('slideshows'));
     // }
 
-    public function store(Request $req)
+    public function store(StoreSlideShowsRequest $req)
     {
         $slideshows = new SlideShows();
 
-        if ($req->hasFile('images')) {
+        if ($req->hasFile('url')) {
 
-            $images = $req->file('images');
+            $images = $req->file('url');
             $imageName = $images->getClientOriginalName();
 
             $path = $images->storeAs('images/products', $imageName);
@@ -143,9 +144,9 @@ class SlideShowsController extends Controller
             return redirect()->route('slideshows.index')->with('alert', 'Slideshow không tồn tại!!');
         }
 
-        if ($req->hasFile('images')) {
+        if ($req->hasFile('url')) {
 
-            $file = $req->file('images');
+            $file = $req->file('url');
             $imageName = $file->getClientOriginalName();
 
             $path = $file->storeAs('images/products', $imageName);

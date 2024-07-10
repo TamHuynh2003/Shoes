@@ -41,8 +41,8 @@
                             <tr>
                                 <td><strong>{{ $loop->iteration }}</strong></td>
                                 <td><span>{{ $products->name }}</span></td>
-                                <td><span>{{ $products->purchase_price }}</span></td>
-                                <td><span>{{ $products->selling_price }}</span></td>
+                                <td><span>{{ number_format($products->purchase_price) }}</span></td>
+                                <td><span>{{ number_format($products->selling_price) }}</span></td>
                                 <td>
                                     @if(!empty($productImage))
                                     <ul class=" m-0 avatar-group d-flex align-items-center">

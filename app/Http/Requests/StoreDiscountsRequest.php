@@ -28,8 +28,6 @@ class StoreDiscountsRequest extends FormRequest
             'start_date' => 'required|date',
             'end_date' => 'required|date',
 
-            'type_discounts_id' => 'required',
-
         ];
     }
 
@@ -58,7 +56,6 @@ class StoreDiscountsRequest extends FormRequest
             'start_date' => 'Ngày áp dụng',
             'end_date' => 'Ngày hết hạn',
 
-            'type_discounts_id' => 'Loại giảm giá',
         ];
     }
 }

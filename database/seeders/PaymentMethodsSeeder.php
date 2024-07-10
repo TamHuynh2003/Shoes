@@ -13,7 +13,7 @@ class PaymentMethodsSeeder extends Seeder
      */
     public function run(): void
     {
-        $payment = ['MoMo', 'PayPal', 'Thanh Toán Khi Nhận Hàng'];
+        $payment = ['VN Pay', 'Thanh Toán Khi Nhận Hàng'];
 
         foreach ($payment as $name) {
             PaymentMethods::create([

@@ -46,7 +46,7 @@
                                 </td>
 
                                 <td>{{ $purchases->purchase_date }}</td>
-                                <td>{{ $purchases->total_price }}</td>
+                                <td>{{ number_format($purchases->total_price) }}</td>
 
                                 <td>{{ $purchases->admins->fullname }}</td>
                                 <td>{{ $purchases->providers->name }}</td>

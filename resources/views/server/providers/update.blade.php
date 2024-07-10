@@ -10,7 +10,7 @@
         </ol>
     </div>
 </div>
-<form method="POST" action="{{ route('providers.update', ['id' => $providers->id]) }}">
+<form method="POST" action="">
     @csrf
     <div class="row">
         <div class="col-xxl">

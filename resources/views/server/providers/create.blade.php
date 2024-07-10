@@ -11,12 +11,12 @@
     </div>
 </div>
 
-<div class="row">
-    <div class="col-xxl">
-        <div class="card mb-4">
-            <div class="card-body">
-                <form method="POST" action="{{ route('providers.store') }}">
-                    @csrf
+<form method="POST" action="">
+    @csrf
+    <div class="row">
+        <div class="col-xxl">
+            <div class="card mb-4">
+                <div class="card-body">
 
                     <div class="mb-3">
                         <label class="form-label">Nhà Cung Cấp </label>
@@ -47,7 +47,12 @@
                         <div class="form-text" style="color:red;">{{ $message }}</div>
                         @enderror
                     </div>
-
+                </div>
+            </div>
+        </div>
+        <div class="col-xxl">
+            <div class="card mb-4">
+                <div class="card-body">
                     <div class="mb-3">
                         <label class="form-label">Điện Thoại</label>
 
@@ -75,10 +80,10 @@
                         </div>
                     </div>
 
-                </form>
+                </div>
             </div>
         </div>
     </div>
-</div>
+</form>
 
 @endsection

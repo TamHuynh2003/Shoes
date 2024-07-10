@@ -160,69 +160,77 @@ class PurchasesController extends Controller
         return view('server.purchases.details', compact('listPurchaseDetails'));
     }
 
-    public function verify($id)
-    {
-        $purchaseDetails = PurchaseDetails::where('purchases_id', $id)->get();
-
-        foreach ($purchaseDetails as $detail) {
-
-            $productDetails = ProductDetails::where('products_id', $detail->products_id)
-                ->where('colors_id', $detail->colors_id)
-                ->where('sizes_id', $detail->sizes_id)
-                ->get();
-
-            if ($productDetails->isEmpty()) {
-                $productdetail = new ProductDetails();
-
-                $productdetail->quantity = $detail->quantity;
-                $productdetail->products_id = $detail->products_id;
-
-                $productdetail->colors_id = $detail->colors_id;
-                $productdetail->sizes_id = $detail->sizes_id;
-
-                $productdetail->save();
-            } else {
-                $productDetails[0]->quantity += $detail->quantity;
-                $productDetails[0]->save();
-            }
-        }
-
-        $purchases = Purchases::where('id', $id)->get();
-
-        $purchases[0]->status_id = 2;
-        $purchases[0]->save();
-
-        return redirect()->route('purchases.index')->with('alert', 'Duyệt hóa đơn nhập thành công');
-    }
     // public function verify($id)
     // {
     //     $purchaseDetails = PurchaseDetails::where('purchases_id', $id)->get();
 
     //     foreach ($purchaseDetails as $detail) {
-    //         $productDetails = ProductDetails::where('products_id', $detail->products_id)
-    //             ->where('colors_id', $detail->colors_id)
-    //             ->where('sizes_id', $detail->sizes_id)
-    //             ->first();
 
-    //         if (is_null($productDetails)) {
-    //             $productDetail = new ProductDetails();
-    //             $productDetail->quantity = $detail->quantity;
-    //             $productDetail->products_id = $detail->products_id;
-    //             $productDetail->colors_id = $detail->colors_id;
-    //             $productDetail->sizes_id = $detail->sizes_id;
-    //             $productDetail->save();
+    //         $productDetails = ProductDetails::where('product_id', $detail->product_id)
+    //             ->where('color_id', $detail->color_id)
+    //             ->where('size_id', $detail->size_id)
+    //             ->get();
+
+    //         if ($productDetails->isEmpty()) {
+    //             $productdetail = new ProductDetails();
+
+    //             $productdetail->quantity = $detail->quantity;
+    //             $productdetail->product_id = $detail->product_id;
+
+    //             $productdetail->color_id = $detail->color_id;
+    //             $productdetail->size_id = $detail->size_id;
+
+    //             $productdetail->save();
     //         } else {
-    //             $productDetails->quantity += $detail->quantity;
-    //             $productDetails->save();
+    //             $productDetails[0]->quantity += $detail->quantity;
+    //             $productDetails[0]->save();
     //         }
     //     }
 
-    //     $purchase = Purchases::find($id);
-    //     $purchase->status_id = 2; // 2 là mã trạng thái cho 'đã duyệt'
-    //     $purchase->save();
+    //     $purchases = Purchases::where('id', $id)->get();
+
+    //     $purchases[0]->status_id = 2;
+    //     $purchases[0]->save();
 
     //     return redirect()->route('purchases.index')->with('alert', 'Duyệt hóa đơn nhập thành công');
     // }
+
+    public function verify($id)
+    {
+        $purchaseDetails = PurchaseDetails::where('purchases_id', $id)->get();
+
+        foreach ($purchaseDetails as $detail) {
+            // Tìm kiếm chi tiết sản phẩm với product_id, color_id và size_id cụ thể
+            $productDetail = ProductDetails::where('product_id', $detail->product_id)
+                ->where('color_id', $detail->color_id)
+                ->where('size_id', $detail->size_id)
+                ->first(); // Sử dụng first() để lấy bản ghi đầu tiên nếu có
+
+            if ($productDetail) {
+                // Nếu tìm thấy, chỉ cập nhật quantity
+                $productDetail->quantity += $detail->quantity;
+            } else {
+                // Nếu không tìm thấy, tạo mới
+                $productDetail = new ProductDetails();
+                $productDetail->product_id = $detail->products_id;
+                $productDetail->color_id = $detail->colors_id;
+                $productDetail->size_id = $detail->sizes_id;
+                $productDetail->quantity = $detail->quantity;
+            }
+
+            // Lưu bản ghi vào cơ sở dữ liệu
+            $productDetail->save();
+        }
+
+        // Cập nhật trạng thái của hóa đơn nhập
+        $purchase = Purchases::find($id);
+        if ($purchase) {
+            $purchase->status_id = 2;
+            $purchase->save();
+        }
+
+        return redirect()->route('purchases.index')->with('alert', 'Duyệt hóa đơn nhập thành công');
+    }
 
     /**
      * Show the form for editing the specified resource.

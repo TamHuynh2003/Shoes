@@ -8,41 +8,6 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Providers>
  */
-// class ProvidersFactory extends Factory
-// {
-//     /**
-//      * Define the model's default state.
-//      *
-//      * @return array<string, mixed>
-//      */
-//     protected $model = Providers::class;
-
-//     public function definition(): array
-//     {
-
-//         $providers = [
-//             'Nhà Cung Cấp Giày Adidas' => 'Cung cấp các mặt hàng về giày Adidas',
-//             'Nhà Cung Cấp Giày Nike' => 'Cung cấp các mặt hàng về giày Nike',
-//             'Nhà Cung Cấp Giày Vans' => 'Cung cấp các mặt hàng về giày Vans',
-//             'Nhà Cung Cấp Giày Puma' => 'Cung cấp các mặt hàng về giày Puma',
-//             'Nhà Cung Cấp Giày Converse' => 'Cung cấp các mặt hàng về giày Converse'
-//         ];
-
-//         $name = $this->faker->randomElement(array_keys($providers));
-//         $description = $providers[$name];
-
-
-//         return [
-//             'name' => $name,
-//             'email' => $this->faker->userName . '@company.com',
-
-//             'phone_number' => '0' . $this->faker->numerify('#########'),
-//             'address' => $this->faker->address,
-
-//             'descriptions' => $description,
-//         ];
-//     }
-// }
 
 class ProvidersFactory extends Factory
 {
@@ -53,25 +18,31 @@ class ProvidersFactory extends Factory
      */
     protected $model = Providers::class;
 
+    protected static $providerIndex = 0;
+
     public function definition(): array
     {
         $providers = [
-            'Nhà Cung Cấp Giày Adidas' => 'Cung cấp các mặt hàng về giày Adidas',
-            'Nhà Cung Cấp Giày Nike' => 'Cung cấp các mặt hàng về giày Nike',
-            'Nhà Cung Cấp Giày Vans' => 'Cung cấp các mặt hàng về giày Vans',
-            'Nhà Cung Cấp Giày Puma' => 'Cung cấp các mặt hàng về giày Puma',
-            'Nhà Cung Cấp Giày Converse' => 'Cung cấp các mặt hàng về giày Converse'
+            ['name' => 'Nhà Cung Cấp Giày Adidas', 'descriptions' => 'Cung cấp các mặt hàng về giày Adidas'],
+            ['name' => 'Nhà Cung Cấp Giày Nike', 'descriptions' => 'Cung cấp các mặt hàng về giày Nike'],
+            ['name' => 'Nhà Cung Cấp Giày Vans', 'descriptions' => 'Cung cấp các mặt hàng về giày Vans'],
+            ['name' => 'Nhà Cung Cấp Giày Puma', 'descriptions' => 'Cung cấp các mặt hàng về giày Puma'],
+            ['name' => 'Nhà Cung Cấp Giày Converse', 'descriptions' => 'Cung cấp các mặt hàng về giày Converse']
         ];
 
-        $name = $this->faker->unique()->randomElement(array_keys($providers));
-        $description = $providers[$name];
+        if (self::$providerIndex >= count($providers)) {
+            self::$providerIndex = 0;
+        }
+
+        $currentProvider = $providers[self::$providerIndex];
+        self::$providerIndex++;
 
         return [
-            'name' => $name,
+            'name' => $currentProvider['name'],
             'email' => $this->faker->unique()->userName . '@company.com',
             'phone_number' => '09' . $this->faker->numerify('########'),
             'address' => $this->faker->address,
-            'descriptions' => $description,
+            'descriptions' => $currentProvider['descriptions'],
         ];
     }
 

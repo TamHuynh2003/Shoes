@@ -11,6 +11,11 @@ class CustomersCarts extends Model
 
     protected $table = 'customer_carts';
 
+    public function images()
+    {
+        return $this->hasMany(ProductImages::class, 'products_id');
+    }
+
     public function customer()
     {
         return $this->belongsTo(CustomersCarts::class);

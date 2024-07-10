@@ -22,7 +22,23 @@ class StoreSlideShowsRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'url' => 'required|image|mimes:jpeg,png,jpg,gif|max:900000',
+        ];
+    }
+
+    public function messages(): array
+    {
+        return [
+            'required' => ":attribute chưa được chọn ",
+            'image' => ":attribute không hợp lệ",
+
+        ];
+    }
+
+    public function attributes()
+    {
+        return [
+            'url' => 'Slide',
         ];
     }
 }

@@ -19,7 +19,7 @@ return new class extends Migration
             );
 
             $table->foreignId('product_detail_id')->after('users_id')->constrained(
-                table: 'products',
+                table: 'product_details',
                 indexName: 'customer_carts_product_detail_id'
             );
         });
@@ -32,9 +32,9 @@ return new class extends Migration
     {
         Schema::table('customer_carts', function (Blueprint $table) {
 
-            $table->dropForeign(['users_id', 'products_id']);
+            $table->dropForeign(['users_id', 'product_detail_id']);
 
-            $table->dropColumn(['users_id', 'products_id']);
+            $table->dropColumn(['users_id', 'product_detail_id']);
         });
     }
 };
