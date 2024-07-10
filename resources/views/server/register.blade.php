@@ -132,7 +132,7 @@
                                 </button>
                             </div>
                             <div class="text-center pt-3">
-                                <p class="text-dark mb-0">Đã Có Tài Khoản?<a href="{{route('admin.login')}}"
+                                <p class="text-dark mb-0">Đã Có Tài Khoản?<a href="{{route('login')}}"
                                         class="text-primary ms-1">Đăng Nhập</a>
                                 </p>
                             </div>

@@ -15,7 +15,7 @@
     <div class="col-xxl">
         <div class="card mb-4">
             <div class="card-body">
-                <form method="POST" action="{{ route('colors.update', ['id' => $colors->id]) }}">
+                <form method="POST" action="">
                     @csrf
                     <div class="mb-3">
                         <label class="form-label">Màu Sắc</label>

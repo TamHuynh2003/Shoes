@@ -3,7 +3,7 @@
     <td><strong>{{ $loop->iteration }}</strong></td>
 
     <td><span>{{ $orders->order_date }}</span></td>
-    <td><span>{{ number_format($orders->selling_price*$orders->quantity) }}</span></td>
+    {{-- <td><span>{{ number_format($orders->selling_price*$orders->quantity) }}</span></td> --}}
 
     <td><span>{{ $orders->users->fullname }}</span></td>
 
@@ -70,12 +70,12 @@
             </a>
 
             <!--Delete-->
-            <a data-id="{{ $orders->id }}" data-action="xóa" data-bs-original-title="Xóa"
+            {{-- <a data-id="{{ $orders->id }}" data-action="xóa" data-bs-original-title="Xóa"
                 href="{{ route('orders.delete', ['id' => $orders->id]) }}" data-bs-toggle="tooltip"
                 class="btn btn-sm btn-outline-secondary border me-2 delete-link">
 
                 <i class="fe fe-trash-2 "></i>
-            </a>
+            </a> --}}
         </div>
     </td>
 </tr>

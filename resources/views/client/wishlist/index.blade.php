@@ -19,7 +19,7 @@
                             @foreach ($wishlist as $item)
                             <tr class="table_row">
                                 <td class="column-1">
-                                    <div class="how-itemcart1">
+                                    <div class="itemcart1">
                                         <img src="{{ asset($item->images->first()->url) }}" alt="IMG-PRODUCT"
                                             style="width: 100px;height: 100px;">
                                     </div>

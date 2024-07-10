@@ -12,7 +12,7 @@
                         <table class="table-shopping-cart">
                             <tr class="table_head">
                                 <th class="column-1">Ảnh</th>
-                                <th class="column-2">Giày</th>
+                                <th class="column-1">Giày</th>
                                 <th class="column-3">Màu</th>
                                 <th class="column-3">Size</th>
                                 <th class="column-3">Số Lượng</th>
@@ -22,15 +22,16 @@
                             @foreach ($cart as $item)
                             <tr class="table_row">
                                 <td class="column-1">
-                                    <div class="how-itemcart1">
-                                        <img src="{{ asset($item->images->first()->url) }}" alt="IMG-PRODUCT">
+                                    <div class="itemcart1">
+                                        <img src="{{ asset($item->images->first()->url) }}" alt="IMG-PRODUCT"
+                                            style="width: 80px;height: 100px;">
                                     </div>
                                 </td>
                                 <td class="column-2"> {{ $item->product_detail->product->name }}</td>
                                 <td class="column-3">{{ $item->product_detail->color->name }}</td>
                                 <td class="column-3">{{ $item->product_detail->size->name }}</td>
                                 <td class="column-3">
-                                    <div class="wrap-num-product flex-w m-l-auto m-r-0">
+                                    <div class="wrap-num-product flex-w m-r-40">
                                         <div class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m">
                                             <i class="fs-16 zmdi zmdi-minus"></i>
                                         </div>

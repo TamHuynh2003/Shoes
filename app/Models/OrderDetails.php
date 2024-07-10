@@ -21,7 +21,7 @@ class OrderDetails extends Model
         return $this->belongsTo(Orders::class);
     }
 
-    public function products()
+    public function product()
     {
         return $this->belongsTo(Products::class);
     }
@@ -34,9 +34,5 @@ class OrderDetails extends Model
     public function sizes()
     {
         return $this->belongsTo(Sizes::class);
-    }
-    public function product()
-    {
-        return $this->belongsTo(Products::class);
     }
 }

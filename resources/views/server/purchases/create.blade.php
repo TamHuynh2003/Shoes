@@ -11,12 +11,12 @@
     </div>
 </div>
 
-<div class="row">
-    <div class="col-xxl">
-        <div class="card mb-4">
-            <div class="card-body">
-                <form method="POST" action="{{ route('purchases.store') }}">
-                    @csrf
+<form method="POST" action="">
+    @csrf
+    <div class="row">
+        <div class="col-xxl">
+            <div class="card mb-4">
+                <div class="card-body">
                     <div class="mb-3">
                         <label class="form-label">Ngày Tạo Hóa Đơn</label>
 
@@ -49,6 +49,19 @@
                     </div>
 
                     <div class="mb-3">
+                        <label class="col-sm-2 col-form-label"> Giá nhập</label>
+
+                        <div class="col-sm-100">
+                            <input type="number" id="purchase_price" class="form-control" placeholder=" " />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xxl">
+            <div class="card mb-4">
+                <div class="card-body">
+                    <div class="mb-3">
                         <label class="form-label">Chọn Màu Sắc</label>
 
                         <select id="color" class="form-select">
@@ -79,50 +92,40 @@
                             <input type="number" id="quantity" class="form-control" />
                         </div>
                     </div>
-
-                    <div class="mb-3">
-                        <label class="col-sm-2 col-form-label"> Giá nhập</label>
-
-                        <div class="col-sm-100">
-                            <input type="number" id="purchase_price" class="form-control" placeholder=" " />
-                        </div>
-                    </div>
-                    <br />
+                    <br>
+                    <br>
                     <button id="add-button" type="button" class="btn btn-primary me-2" onclick="productUpdate()">Thêm
                     </button>
-
-                    <br />
-                    <br />
-                    <br />
-
-                    <label for="basic-icon-default-name">Nhà Cung Cấp: </label>
-
-                    <b id="provider-alt-name">{{ $listProviders[0]->name }}</b>
-
-                    <input type="hidden" name="provider_id" id="provider-alt" value='1' />
-
-                    <table id="listProducts" class="table">
-                        <tbody>
-                            <tr>
-                                <td>Loại Giày </td>
-                                <td>Màu Sắc</td>
-                                <td>Kích Cỡ</td>
-                                <td>Số lượng</td>
-                                <td>Giá nhập</td>
-                                <td>Tổng Tiền</td>
-                                <td>Chức Năng</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <div class="mt-2">
-                        <button type="submit" class="btn btn-primary me-2">Nhập Hàng</button>
-                        <a href="{{ route('purchases.index') }}" class="btn btn-outline-secondary">Trở Lại</a>
-                    </div>
-                </form>
+                </div>
             </div>
         </div>
+
+
+        <label for="basic-icon-default-name">Nhà Cung Cấp: </label>
+
+        <b id="provider-alt-name">{{ $listProviders[0]->name }}</b>
+
+        <input type="hidden" name="provider_id" id="provider-alt" value='1' />
+
+        <table id="listProducts" class="table">
+            <tbody>
+                <tr>
+                    <td>Loại Giày </td>
+                    <td>Màu Sắc</td>
+                    <td>Kích Cỡ</td>
+                    <td>Số lượng</td>
+                    <td>Giá nhập</td>
+                    <td>Tổng Tiền</td>
+                    <td>Chức Năng</td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="mt-2">
+            <button type="submit" class="btn btn-primary me-2">Nhập Hàng</button>
+            <a href="{{ route('purchases.index') }}" class="btn btn-outline-secondary">Trở Lại</a>
+        </div>
     </div>
-</div>
+</form>
 
 <script src="{{ asset('admin_template/assets/jquery-3.7.1.min.js') }}"></script>
 <script>
@@ -221,12 +224,13 @@
                     <td>${price}<input type="hidden" name="purchase_price[]" value="${price}"/></td>
                     <td>${totalprice}<input type="hidden" name="totalprice[]" value="${totalprice}"/></td>
                     <td>
-                        <button type='button'onclick='productDelete(this);'class='btn btn-default'>
+                        <button type='button' onclick='productDelete(this); 'class='btn btn-default'>
                         <span class='glyphicon glyphicon-remove' />
                         Xóa
                         </button>
                     </td>
-                </tr>`);
+                </tr>`
+            );
         }
     }
 

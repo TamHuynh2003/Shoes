@@ -22,7 +22,7 @@
         <div class="d-flex align-items-stretch">
             <!--Edit-->
             <a class="btn btn-sm btn-outline-primary border me-2" data-bs-toggle="tooltip"
-                href="{{ route('admins.update', ['id' => $admins->id]) }}" data-bs-original-title="Sửa">
+                href="{{ route('admins.edit', ['id' => $admins->id]) }}" data-bs-original-title="Sửa">
                 <i class="fe fe-edit-2"></i>
             </a>
             <!--Details-->

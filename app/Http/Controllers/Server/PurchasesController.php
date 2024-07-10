@@ -194,41 +194,43 @@ class PurchasesController extends Controller
 
     //     return redirect()->route('purchases.index')->with('alert', 'Duyệt hóa đơn nhập thành công');
     // }
+
     public function verify($id)
     {
         $purchaseDetails = PurchaseDetails::where('purchases_id', $id)->get();
 
         foreach ($purchaseDetails as $detail) {
-
-            $productDetails = ProductDetails::where('product_id', $detail->product_id)
+            // Tìm kiếm chi tiết sản phẩm với product_id, color_id và size_id cụ thể
+            $productDetail = ProductDetails::where('product_id', $detail->product_id)
                 ->where('color_id', $detail->color_id)
                 ->where('size_id', $detail->size_id)
-                ->get();
+                ->first(); // Sử dụng first() để lấy bản ghi đầu tiên nếu có
 
-            if ($productDetails->isEmpty()) {
-                $productdetail = new ProductDetails();
-
-                $productdetail->quantity = $detail->quantity;
-                $productdetail->product_id = $detail->products_id;
-
-                $productdetail->color_id = $detail->colors_id;
-                $productdetail->size_id = $detail->sizes_id;
-
-                $productdetail->save();
+            if ($productDetail) {
+                // Nếu tìm thấy, chỉ cập nhật quantity
+                $productDetail->quantity += $detail->quantity;
             } else {
-                $productDetails[0]->quantity += $detail->quantity;
-                $productDetails[0]->save();
+                // Nếu không tìm thấy, tạo mới
+                $productDetail = new ProductDetails();
+                $productDetail->product_id = $detail->products_id;
+                $productDetail->color_id = $detail->colors_id;
+                $productDetail->size_id = $detail->sizes_id;
+                $productDetail->quantity = $detail->quantity;
             }
+
+            // Lưu bản ghi vào cơ sở dữ liệu
+            $productDetail->save();
         }
 
-        $purchases = Purchases::where('id', $id)->get();
-
-        $purchases[0]->status_id = 2;
-        $purchases[0]->save();
+        // Cập nhật trạng thái của hóa đơn nhập
+        $purchase = Purchases::find($id);
+        if ($purchase) {
+            $purchase->status_id = 2;
+            $purchase->save();
+        }
 
         return redirect()->route('purchases.index')->with('alert', 'Duyệt hóa đơn nhập thành công');
     }
-
 
     /**
      * Show the form for editing the specified resource.

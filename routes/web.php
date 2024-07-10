@@ -132,12 +132,12 @@ Route::prefix('/admin')->group(function () {
             Route::post('/search', [AdminsController::class, 'search'])->name('search');
 
             Route::get('/them-moi', [AdminsController::class, 'create'])->name('create');
-            Route::post('/them-moi', [AdminsController::class, 'store'])->name('store');
+            Route::post('/them-moi', [AdminsController::class, 'store']);
 
             Route::get('/chi-tiet/{id}', [AdminsController::class, 'show'])->name('show');
 
             Route::get('/cap-nhat/{id}', [AdminsController::class, 'edit'])->name('edit');
-            Route::post('/cap-nhat/{id}', [AdminsController::class, 'update'])->name('update');
+            Route::post('/cap-nhat/{id}', [AdminsController::class, 'update']);
 
             Route::get('/delete/{id}', [AdminsController::class, 'destroy'])->name('delete');
 
@@ -165,7 +165,7 @@ Route::prefix('/admin')->group(function () {
             Route::get('/chi-tiet/{id}', [UsersController::class, 'show'])->name('show');
 
             Route::get('/cap-nhat/{id}', [UsersController::class, 'edit'])->name('edit');
-            Route::post('/cap-nhat/{id}', [UsersController::class, 'update'])->name('update');
+            Route::post('/cap-nhat/{id}', [UsersController::class, 'update']);
 
             Route::get('/delete/{id}', [UsersController::class, 'destroy'])->name('delete');
 
@@ -187,13 +187,13 @@ Route::prefix('/admin')->group(function () {
             Route::post('/search', [ProductsController::class, 'search'])->name('search');
 
             Route::get('/them-moi', [ProductsController::class, 'create'])->name('create');
-            Route::post('/them-moi', [ProductsController::class, 'store'])->name('store');
+            Route::post('/them-moi', [ProductsController::class, 'store']);
 
             Route::get('/chi-tiet/{id}', [ProductsController::class, 'show'])->name('show');
             Route::post('/quantity/{id}', [ProductsController::class, 'quantity'])->name('quantity');
 
             Route::get('/cap-nhat/{id}', [ProductsController::class, 'edit'])->name('edit');
-            Route::post('/cap-nhat/{id}', [ProductsController::class, 'update'])->name('update');
+            Route::post('/cap-nhat/{id}', [ProductsController::class, 'update']);
 
             Route::get('/delete/{id}', [ProductsController::class, 'destroy'])->name('delete');
 
@@ -219,12 +219,12 @@ Route::prefix('/admin')->group(function () {
             Route::post('/search', [ProvidersController::class, 'search'])->name('search');
 
             Route::get('/them-moi', [ProvidersController::class, 'create'])->name('create');
-            Route::post('/them-moi', [ProvidersController::class, 'store'])->name('store');
+            Route::post('/them-moi', [ProvidersController::class, 'store']);
 
             Route::get('/chi-tiet/{id}', [ProvidersController::class, 'show'])->name('show');
 
             Route::get('/cap-nhat/{id}', [ProvidersController::class, 'edit'])->name('edit');
-            Route::post('/cap-nhat/{id}', [ProvidersController::class, 'update'])->name('update');
+            Route::post('/cap-nhat/{id}', [ProvidersController::class, 'update']);
 
             Route::get('/delete/{id}', [ProvidersController::class, 'destroy'])->name('delete');
 
@@ -253,7 +253,7 @@ Route::prefix('/admin')->group(function () {
             Route::get('/verify/{id}', [PurchasesController::class, 'verify'])->name('verify');
 
             Route::get('/them-moi', [PurchasesController::class, 'create'])->name('create');
-            Route::post('/them-moi', [PurchasesController::class, 'store'])->name('store');
+            Route::post('/them-moi', [PurchasesController::class, 'store']);
 
             Route::get('/delete/{id}', [PurchasesController::class, 'destroy'])->name('delete');
 
@@ -277,7 +277,7 @@ Route::prefix('/admin')->group(function () {
 
             Route::get('/chi-tiet/{id}', [OrdersController::class, 'show'])->name('show');
 
-            Route::get('/delete/{id}', [OrdersController::class, 'destroy'])->name('delete');
+            // Route::get('/delete/{id}', [OrdersController::class, 'destroy'])->name('delete');
 
             Route::get('/status/{id}/{status}', [OrdersController::class, 'changeStatus'])->name('status');
 
@@ -320,10 +320,10 @@ Route::prefix('/admin')->group(function () {
             Route::post('/search', [DiscountsController::class, 'search'])->name('search');
 
             Route::get('/them-moi', [DiscountsController::class, 'create'])->name('create');
-            Route::post('/them-moi', [DiscountsController::class, 'store'])->name('store');
+            Route::post('/them-moi', [DiscountsController::class, 'store']);
 
             Route::get('/cap-nhat/{id}', [DiscountsController::class, 'edit'])->name('edit');
-            Route::post('/cap-nhat/{id}', [DiscountsController::class, 'update'])->name('update');
+            Route::post('/cap-nhat/{id}', [DiscountsController::class, 'update']);
 
             Route::get('/delete/{id}', [DiscountsController::class, 'destroy'])->name('delete');
 
@@ -349,10 +349,10 @@ Route::prefix('/admin')->group(function () {
             Route::post('/search', [CategoriesController::class, 'search'])->name('search');
 
             Route::get('/them-moi', [CategoriesController::class, 'create'])->name('create');
-            Route::post('/them-moi', [CategoriesController::class, 'store'])->name('store');
+            Route::post('/them-moi', [CategoriesController::class, 'store']);
 
             Route::get('/cap-nhat/{id}', [CategoriesController::class, 'edit'])->name('edit');
-            Route::post('/cap-nhat/{id}', [CategoriesController::class, 'update'])->name('update');
+            Route::post('/cap-nhat/{id}', [CategoriesController::class, 'update']);
 
             Route::get('/delete/{id}', [CategoriesController::class, 'destroy'])->name('delete');
 
@@ -378,10 +378,10 @@ Route::prefix('/admin')->group(function () {
             Route::post('/search', [PaymentMethodsController::class, 'search'])->name('search');
 
             Route::get('/them-moi', [PaymentMethodsController::class, 'create'])->name('create');
-            Route::post('/themmoi', [PaymentMethodsController::class, 'store'])->name('store');
+            Route::post('/them-moi', [PaymentMethodsController::class, 'store']);
 
             Route::get('/cap-nhat/{id}', [PaymentMethodsController::class, 'edit'])->name('edit');
-            Route::post('/capnhat/{id}', [PaymentMethodsController::class, 'update'])->name('update');
+            Route::post('/cap-nhat/{id}', [PaymentMethodsController::class, 'update']);
 
             Route::get('/delete/{id}', [PaymentMethodsController::class, 'destroy'])->name('delete');
 
@@ -404,10 +404,10 @@ Route::prefix('/admin')->group(function () {
             Route::get('/thung-rac', [SlideShowsController::class, 'trash'])->name('trash');
 
             Route::get('/them-moi', [SlideShowsController::class, 'create'])->name('create');
-            Route::post('/them-moi', [SlideShowsController::class, 'store'])->name('store');
+            Route::post('/them-moi', [SlideShowsController::class, 'store']);
 
             Route::get('/cap-nhat/{id}', [SlideShowsController::class, 'edit'])->name('edit');
-            Route::post('/cap-nhat/{id}', [SlideShowsController::class, 'update'])->name('update');
+            Route::post('/cap-nhat/{id}', [SlideShowsController::class, 'update']);
 
             Route::get('/delete/{id}', [SlideShowsController::class, 'destroy'])->name('delete');
         });
@@ -426,10 +426,10 @@ Route::prefix('/admin')->group(function () {
             Route::post('/search', [ColorsController::class, 'search'])->name('search');
 
             Route::get('/them-moi', [ColorsController::class, 'create'])->name('create');
-            Route::post('/them-moi', [ColorsController::class, 'store'])->name('store');
+            Route::post('/them-moi', [ColorsController::class, 'store']);
 
             Route::get('/cap-nhat/{id}', [ColorsController::class, 'edit'])->name('edit');
-            Route::post('/cap-nhat/{id}', [ColorsController::class, 'update'])->name('update');
+            Route::post('/cap-nhat/{id}', [ColorsController::class, 'update']);
 
             Route::get('/delete/{id}', [ColorsController::class, 'destroy'])->name('delete');
         });
@@ -448,10 +448,10 @@ Route::prefix('/admin')->group(function () {
             Route::post('/search', [SizesController::class, 'search'])->name('search');
 
             Route::get('/them-moi', [SizesController::class, 'create'])->name('create');
-            Route::post('/them-moi', [SizesController::class, 'store'])->name('store');
+            Route::post('/them-moi', [SizesController::class, 'store']);
 
             Route::get('/cap-nhat/{id}', [SizesController::class, 'edit'])->name('edit');
-            Route::post('/cap-nhat/{id}', [SizesController::class, 'update'])->name('update');
+            Route::post('/cap-nhat/{id}', [SizesController::class, 'update']);
 
             Route::get('/delete/{id}', [SizesController::class, 'destroy'])->name('delete');
         });

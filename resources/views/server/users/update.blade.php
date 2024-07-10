@@ -11,7 +11,7 @@
     </div>
 </div>
 
-<form method="POST" action="{{ route('users.update', ['id' => $users->id]) }}" enctype="multipart/form-data">
+<form method="POST" action="" enctype="multipart/form-data">
     @csrf
     <div class="row">
         <div class="col-xxl">
