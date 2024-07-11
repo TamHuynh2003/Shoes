@@ -90,12 +90,16 @@ Route::post('/chinh-sua-anh', [ProfileController::class, 'update_avatar'])->name
 Route::get('/blog', [BlogController::class, 'index'])->name('blog');
 //
 Route::get('/lien-he', [ContactController::class, 'index'])->name('contact');
+Route::post('/lien-he', [ContactController::class, 'contact_handle'])->name('contact_handle');
+
 //
 Route::get('/ve-chung-toi', [AboutController::class, 'index'])->name('about');
 //
 Route::get('/san-pham', [ProductController::class, 'index'])->name('products');
 //
 Route::get('/chi-tiet-san-pham/{id}', [ProductController::class, 'detail'])->name('product_detail');
+//
+Route::get('/tim-kiem', [ProductController::class, 'search'])->name('search');
 
 
 //Admins Route

@@ -15,19 +15,19 @@
 
                     </a>
                     @if (auth('users')->check())
-                        <a href="{{ route('profile_user') }}" class="flex-c-m trans-04 p-lr-25">
-                            Xin Chào, {{ auth('users')->user()->fullname }}
-                        </a>
-                        <a href="#" class="flex-c-m trans-04 p-lr-25">
-                            <form action="{{ route('user_logout') }}" method="post">
-                                @csrf
-                                <input type="submit" value="Đăng Xuất" style="background: transparent; color: white">
-                            </form>
-                        </a>
+                    <a href="{{ route('profile_user') }}" class="flex-c-m trans-04 p-lr-25">
+                        Xin Chào, {{ auth('users')->user()->fullname }}
+                    </a>
+                    <a href="#" class="flex-c-m trans-04 p-lr-25">
+                        <form action="{{ route('user_logout') }}" method="post">
+                            @csrf
+                            <input type="submit" value="Đăng Xuất" style="background: transparent; color: white">
+                        </form>
+                    </a>
                     @else
-                        <a href="{{ route('user_login') }}" class="flex-c-m trans-04 p-lr-25">
-                            Đăng Nhập
-                        </a>
+                    <a href="{{ route('user_login') }}" class="flex-c-m trans-04 p-lr-25">
+                        Đăng Nhập
+                    </a>
                     @endif
 
                 </div>
@@ -66,12 +66,15 @@
 
                 <div class="wrap-icon-header flex-w flex-r-m">
                     <div class="bor17 of-hidden pos-relative">
-                        <input class="stext-103 cl2 plh4 size-116 p-l-28 p-r-55" type="text" name="search"
-                            placeholder="Tìm kiếm">
+                        <form action="{{route('search')}}" method="GET">
+                            <input class="stext-103 cl2 plh4 size-116 p-l-28 p-r-55" type="text" name="search"
+                                placeholder="Tìm kiếm">
 
-                        <button class="flex-c-m size-122 ab-t-r fs-18 cl4 hov-cl1 trans-04">
-                            <i class="zmdi zmdi-search"></i>
-                        </button>
+                            <button class="flex-c-m size-122 ab-t-r fs-18 cl4 hov-cl1 trans-04">
+                                <i class="zmdi zmdi-search"></i>
+                            </button>
+                        </form>
+
                     </div>
 
                     <a href="{{ route('cart') }}"

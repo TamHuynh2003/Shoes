@@ -38,4 +38,11 @@ class ProductController extends Controller
         $product = Products::find($id); // Tìm sản phẩm theo ID
         return view('client.product_detail.index', compact('product', 'size', 'color'));
     }
+
+    public function search(Request $request)
+    {
+        $search = $request->search;
+        $products = Products::where('name', "LIKE", "%" . $search . "%")->get();
+        return view('client.products.search', compact('products', 'search'));
+    }
 }
