@@ -33,7 +33,12 @@ return new class extends Migration
                 indexName: 'orders_payment_methods_id'
             );
 
-            $table->foreignId('status_id')->default(1)->after('payment_methods_id')->constrained(
+            $table->foreignId('payments_id')->nullable()->after('payment_methods_id')->constrained(
+                table: 'payments',
+                indexName: 'orders_payments_id'
+            );
+
+            $table->foreignId('status_id')->default(1)->after('payments_id')->constrained(
                 table: 'order_states',
                 indexName: 'orders_status_id'
             );

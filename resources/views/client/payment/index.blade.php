@@ -68,7 +68,8 @@
 <body>
     <div class="payment-form">
         <h2>Thanh toán VNPay</h2>
-        <form action="{{ route('create_payment') }}" method="POST">
+        <form action="{{ route('create_payment',['address'=>$address,'phone'=>$phone,'email'=>$email]) }}"
+            method="POST">
             @csrf
             <div class="form-group">
                 <label for="amount">Số tiền:</label>

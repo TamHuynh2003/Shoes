@@ -1,6 +1,6 @@
 @foreach ($listDiscounts as $discounts)
 <tr>
-    <td><strong>{{ $loop->iteration }}</strong></td>
+    <td><strong>{{ $discounts->id }}</strong></td>
     <td><span>{{ $discounts->name }}</span></td>
     <td><span>{{ $discounts->amount }} %</span></td>
     <td><span>{{ $discounts->type_discounts->name }}</span></td>

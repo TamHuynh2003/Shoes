@@ -101,12 +101,14 @@
         </div>
 
 
-        <label for="basic-icon-default-name">Nhà Cung Cấp: </label>
+        <label for="basic-icon-default-name">Nhà Cung Cấp:
 
-        <b id="provider-alt-name">{{ $listProviders[0]->name }}</b>
+            <b id="provider-name">{{ $listProviders[0]->name }}</b>
 
-        <input type="hidden" name="provider_id" id="provider-alt" value='1' />
-
+        </label>
+        <br>
+        <input type="hidden" name="provider_id" id="provider" value='1' />
+        <br>
         <table id="listProducts" class="table">
             <tbody>
                 <tr>
@@ -130,8 +132,8 @@
 <script src="{{ asset('admin_template/assets/jquery-3.7.1.min.js') }}"></script>
 <script>
     $("#provider").change(function() {
-        $('#provider-alt').val(this.value);
-        $('#provider-alt-name').text($(this).find('option[value="' + this.value + '"]').text());
+        $('#provider').val(this.value);
+        $('#provider-name').text($(this).find('option[value="' + this.value + '"]').text());
     });
 
     $("#product").change(function() {
@@ -180,8 +182,8 @@
         $("#size").val("");
     }
 
-    function productDelete(ctl) {
-        $(ctl).parents('tr').remove();
+    function productDelete(product) {
+        $(product).parents('tr').remove();
         add_button_check();
     }
 
@@ -234,7 +236,7 @@
         }
     }
 
-    function productEdit(ctl) {
+    function productEdit(product) {
         if ($("#quantity").val() != "" && $("#purchase_price").val() != "" && $("#color").val() != "" 
             && $("#size").val() !="") 
         {
@@ -252,7 +254,7 @@
 
             var totalprice = price * quantity;
 
-            $(ctl).after(
+            $(product).after(
                 `<tr> 
                     <td>${product}<input type="hidden" name="product_id[]" id="product-id" value="${productId}"/></td>
                     <td>${color}<input type="hidden" name="color[]" id="color-id" value="${colorId}"/></td>
@@ -267,7 +269,7 @@
                         </button>
                     </td>
                 </tr>`);
-            productDelete(ctl.find('td'));
+            productDelete(product.find('td'));
             formClear();
             add_button_check();
         }

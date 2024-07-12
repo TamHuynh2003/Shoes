@@ -23,6 +23,12 @@ class CheckoutController extends Controller
         }
         return view('client.checkout.index', compact('carts', 'paymentMethods', 'total'));
     }
+
+    public function thankyou()
+    {
+        return view('client.checkout.thankyou');
+    }
+
     public function process(Request $request)
     {
         $paymentMethods = PaymentMethods::find($request->payment_method_id);
@@ -32,12 +38,16 @@ class CheckoutController extends Controller
         //     // return redirect()->route('vnpay_payment');
         // }
         if ($paymentMethods->id == 1) {
-            return redirect()->route('vnpay_payment');
+
+            return redirect('/payment?address=' . $request->address .
+                '&phone=' . $request->phone .
+                '&email=' . $request->email);
         }
         $carts = CustomersCarts::where('users_id', auth('users')->user()->id)->with('product_detail')->get();
         $order = new Orders();
         $order->order_date =  date("Y-m-d");
         $order->address = $request->address;
+        $order->email = $request->email;
         $order->phone_number = $request->phone;
         $order->payment_methods_id = $request->payment_method_id;
         $order->users_id = auth('users')->user()->id;

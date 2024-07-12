@@ -19,7 +19,10 @@ return new class extends Migration
 
             $table->string('address');
             $table->string('phone_number');
+
             $table->decimal('shipping_cost');
+
+            $table->boolean('payment_status')->default(false);
 
             // $table->boolean('is_deleted')->default(true);
 

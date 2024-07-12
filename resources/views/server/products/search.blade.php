@@ -1,6 +1,6 @@
 @foreach ($listProducts as $products)
 <tr>
-    <td><strong>{{ $loop->iteration }}</strong></td>
+    <td><strong>{{ $products->id}}</strong></td>
     <td><span>{{ $products->name }}</span></td>
     <td><span>{{ number_format($products->purchase_price) }}</span></td>
     <td><span>{{ number_format($products->selling_price) }}</span></td>

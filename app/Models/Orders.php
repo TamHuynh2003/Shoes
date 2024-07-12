@@ -12,6 +12,20 @@ class Orders extends Model
 
     protected $table = 'orders';
 
+    protected $fillable = [
+        'order_date',
+        'address',
+        'phone_number',
+        'shipping_cost',
+        'users_id',
+        'admins_id',
+        'discount_id',
+        'payment_methods_id',
+        'payments_id',
+        'status_id',
+        'payment_status',
+    ];
+
     public function users()
     {
         return $this->belongsTo(Users::class);
@@ -41,6 +55,4 @@ class Orders extends Model
     {
         return $this->hasMany(OrderDetails::class)->with('product');
     }
-
-
 }

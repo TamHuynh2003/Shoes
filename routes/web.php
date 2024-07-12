@@ -75,11 +75,12 @@ Route::post('/xoa-yeu-thich', [WishlistController::class, 'delete'])->name('wish
 
 //
 Route::get('/thanh-toan', [CheckoutController::class, 'index'])->name('checkout')->middleware('auth:users');
+Route::get('/thanh-toan-thanh-cong', [CheckoutController::class, 'thankyou'])->name('thankyou')->middleware('auth:users');
 Route::post('/thanh-toan', [CheckoutController::class, 'process'])->name('process_payment')->middleware('auth:users');
 //
 Route::get('/payment', [PaymentController::class, 'index'])->name('vnpay_payment');
 Route::post('/vnpay/create-payment', [PaymentController::class, 'createPayment'])->name('create_payment');
-Route::post('/vnpay/return-payment', [PaymentController::class, 'returnPayment'])->name('payment_handle');
+Route::get('/vnpay/return-payment/{id}', [PaymentController::class, 'returnPayment'])->name('payment_handle');
 //
 Route::get('/thong-tin-ca-nhan', [ProfileController::class, 'index'])->name('profile_user');
 Route::post('/chinh-sua-thong-tin', [ProfileController::class, 'update_profile'])->name('update_profile_user');

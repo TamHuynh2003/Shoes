@@ -88,7 +88,7 @@ class PurchasesController extends Controller
         $purchases->total_price = $total;
         $purchases->purchase_date = $req->purchase_date;
 
-        $purchases->providers_id = $req->provider_id;
+        $purchases->providers_id = $req->providers_id;
         $purchases->admins_id = Auth::user()->id;
 
         $purchases->save();

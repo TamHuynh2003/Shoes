@@ -1,6 +1,6 @@
 @foreach ($listAdmins as $admins)
 <tr>
-    <td><strong>{{ $loop->iteration }}</strong></td>
+    <td><strong>{{ $admins->id }}</strong></td>
     <td><span>{{ $admins->fullname }}</span></td>
     <td><span>{{ $admins->address }}</span></td>
     <td><span>{{ $admins->phone_number }}</span></td>
