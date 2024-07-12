@@ -18,6 +18,7 @@ return new class extends Migration
             $table->date('order_date');
 
             $table->string('address');
+            $table->string('email');
             $table->string('phone_number');
 
             $table->decimal('shipping_cost');

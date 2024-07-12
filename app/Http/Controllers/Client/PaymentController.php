@@ -89,6 +89,7 @@ class PaymentController extends Controller
         $order = new Orders();
         $order->order_date =  date("Y-m-d");
         $order->address = $request->address;
+        $order->email = $request->email;
         $order->phone_number = $request->phone;
         $order->payment_methods_id = 1;
         $order->users_id = auth('users')->user()->id;

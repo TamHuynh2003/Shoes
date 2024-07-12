@@ -17,35 +17,40 @@
                         <h2 class="h3 mb-3 text-black">Thông Tin Khách Hàng</h2>
                         <div class="p-3 p-lg-5 border">
 
-
+                            <div class="form-group row">
+                                <div class="col-md-6">
+                                    <label class="text-black">Họ Và Tên <span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control" name="fullname"
+                                        value="{{ auth('users')->user()->fullname }}" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="text-black">Số Điện Thoại <span class="text-danger">*</span></label>
+                                    <input required type="number" class="form-control" name="phone"
+                                        value="{{ auth('users')->user()->phone_number }}">
+                                </div>
+                            </div>
 
                             <div class="form-group row">
                                 <div class="col-md-12">
-                                    <label for="c_address" class="text-black">Địa Chỉ Nhận Hàng <span
+                                    <label class="text-black">Địa Chỉ Nhận Hàng <span
                                             class="text-danger">*</span></label>
-                                    <input type="text" class="form-control" id="c_address" name="address"
+                                    <input type="text" class="form-control" name="address"
                                         value="{{ auth('users')->user()->address }}" required>
                                 </div>
                             </div>
 
                             <div class="form-group row mb-5">
                                 <div class="col-md-6">
-                                    <label for="c_email_address" class="text-black">Email liên hệ <span
-                                            class="text-danger">*</span></label>
-                                    <input type="email" class="form-control" id="c_email_address" name="email" required
+                                    <label class="text-black">Email liên hệ <span class="text-danger">*</span></label>
+                                    <input type="email" class="form-control" name="email" required
                                         value="{{ auth('users')->user()->email }}">
                                 </div>
-                                <div class="col-md-6">
-                                    <label for="c_phone" class="text-black">Số Điện Thoại <span
-                                            class="text-danger">*</span></label>
-                                    <input required type="number" class="form-control" id="c_phone" name="phone"
-                                        value="{{ auth('users')->user()->phone_number }}">
-                                </div>
+
                             </div>
 
                             <div class="form-group">
-                                <label for="c_order_notes" class="text-black">Lời Nhắn Tới Shop</label>
-                                <textarea name="order_notes" id="c_order_notes" cols="30" rows="5" class="form-control"
+                                <label class="text-black">Lời Nhắn Tới Shop</label>
+                                <textarea name="order_notes" cols="30" rows="5" class="form-control"
                                     placeholder=""></textarea>
                             </div>
                             <div class="flex-w flex-sb-m">
@@ -119,16 +124,4 @@
         </div>
     </div>
 </div>
-{{-- <div class="site-section">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12 text-center">
-                <span class="icon-check_circle display-3 text-success"></span>
-                <h2 class="display-3 text-black">Cảm Ơn Bạn Đã Đặt Hàng Ở Website Của Chúng Tôi</h2>
-                <p class="lead mb-5">Đơn Hàng Của Bạn Đã Được Chúng Tôi Lên Đơn</p>
-                <p><a href="shop.html" class="btn btn-sm btn-primary">Quay Lại Mua Sắp</a></p>
-            </div>
-        </div>
-    </div>
-</div> --}}
 @endsection

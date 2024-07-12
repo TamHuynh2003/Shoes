@@ -68,6 +68,7 @@ class CheckoutController extends Controller
             $item->delete();
         }
 
-        return redirect()->route('home');
+        // return redirect()->route('home');
+        return redirect()->route('thankyou');
     }
 }
