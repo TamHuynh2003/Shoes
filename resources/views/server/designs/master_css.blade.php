@@ -31,4 +31,5 @@
     <!--SweetAlert-->
     <link rel="stylesheet" href="{{ asset('admin_template/sweetalert2/sweetalert2.min.css')}}">
 
+
 </head>

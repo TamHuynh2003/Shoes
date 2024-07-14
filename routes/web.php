@@ -37,6 +37,8 @@ use App\Http\Controllers\Server\CategoriesController;
 use App\Http\Controllers\Server\SlideShowsController;
 use App\Http\Controllers\Server\PaymentMethodsController;
 
+use App\Http\Middleware\LoginAuthenticate;
+use App\Http\Middleware\HomeAuthenticate;
 
 // Route::get('/', function () {
 //     return view('dashboard');
@@ -44,128 +46,131 @@ use App\Http\Controllers\Server\PaymentMethodsController;
 // });
 
 
-//Users Route
-Route::get('/', [HomeController::class, 'index'])->name('home');
-
-Route::get('/dang-ky', [UsersController::class, 'register'])->name('user_register');
-Route::post('/dang-ky', [UsersController::class, 'registerHandle']);
-
-Route::get('/dang-nhap', [UsersController::class, 'login'])->name('user_login');
-Route::post('/dang-nhap', [UsersController::class, 'loginHandle']);
-
-Route::get('/trang-ca-nhan', [UsersController::class, 'profile'])->name('user_profile')->middleware('auth:users');
-Route::post('/trang-ca-nhan', [UsersController::class, 'updateProfile'])->name('updateProfile')->middleware('auth:users');
-
-Route::get('auth/google', [UsersController::class, 'redirectToGoogle'])->name('auth.google');
-Route::get('auth/google/callback', [UsersController::class, 'handleGoogleCallback']);
-
-Route::post('/dang-xuat', [UsersController::class, 'logout'])->name('user_logout');
-
-//
-Route::get('/gio-hang', [CartController::class, 'index'])->name('cart')->middleware('auth:users');
-Route::post('/them-gio-hang/{id}', [CartController::class, 'add'])->name('add_cart')->middleware('auth:users');
-Route::post('/cap-nhat-gio-hang/{id}', [CartController::class, 'update'])->name('update-cart')->middleware('auth:users');
-Route::post('/xoa-gio-hang', [CartController::class, 'delete'])->name('delete_cart')->middleware('auth:users');
-Route::post('/xoa-all-gio-hang', [CartController::class, 'clear'])->name('delete_all_cart')->middleware('auth:users');
-
-//
-Route::get('/yeu-thich', [WishlistController::class, 'index'])->name('wishlist')->middleware('auth:users');
-Route::get('/them-yeu-thich/{id}', [WishlistController::class, 'add'])->name('wishlist_add')->middleware('auth:users');
-Route::post('/xoa-yeu-thich', [WishlistController::class, 'delete'])->name('wishlist_delete')->middleware('auth:users');
-
-//
-Route::get('/thanh-toan', [CheckoutController::class, 'index'])->name('checkout')->middleware('auth:users');
-Route::get('/thanh-toan-thanh-cong', [CheckoutController::class, 'thankyou'])->name('thankyou')->middleware('auth:users');
-Route::post('/thanh-toan', [CheckoutController::class, 'process'])->name('process_payment')->middleware('auth:users');
-//
-Route::get('/payment', [PaymentController::class, 'index'])->name('vnpay_payment')->middleware('auth:users');
-Route::post('/vnpay/create-payment', [PaymentController::class, 'createPayment'])->name('create_payment')->middleware('auth:users');
-Route::get('/vnpay/return-payment/{id}', [PaymentController::class, 'returnPayment'])->name('payment_handle')->middleware('auth:users');
-//
-Route::get('/thong-tin-ca-nhan', [ProfileController::class, 'index'])->name('profile_user')->middleware('auth:users');
-Route::post('/chinh-sua-thong-tin', [ProfileController::class, 'update_profile'])->name('update_profile_user')->middleware('auth:users');
-Route::post('/chinh-sua-mat-khau', [ProfileController::class, 'update_password'])->name('update_password_profile_user')->middleware('auth:users');
-Route::post('/chinh-sua-anh', [ProfileController::class, 'update_avatar'])->name('update_avatar_profile_user')->middleware('auth:users');
-
-
-Route::get('/blog', [BlogController::class, 'index'])->name('blog');
-
-Route::get('/lien-he', [ContactController::class, 'index'])->name('contact');
-Route::post('/lien-he', [ContactController::class, 'contact_handle'])->name('contact_handle');
-
-//
-Route::get('/ve-chung-toi', [AboutController::class, 'index'])->name('about');
-
-Route::get('/san-pham', [ProductController::class, 'index'])->name('products');
-//
-Route::get('/chi-tiet-san-pham/{id}', [ProductController::class, 'detail'])->name('product_detail');
-//
-Route::get('/tim-kiem', [ProductController::class, 'search'])->name('search');
 
 //Users Route
+// Route::get('/', [HomeController::class, 'index'])->name('home');
 
-// Route::prefix('/')->group(function () {
+// Route::get('/dang-ky', [UsersController::class, 'register'])->name('user_register');
+// Route::post('/dang-ky', [UsersController::class, 'registerHandle']);
 
-//     Route::middleware('guest:users')->group(function () {
-//         Route::get('/', [HomeController::class, 'index'])->name('home');
+// Route::get('/dang-nhap', [UsersController::class, 'login'])->name('user_login');
+// Route::post('/dang-nhap', [UsersController::class, 'loginHandle']);
 
-//         Route::get('/dang-ky', [UsersController::class, 'register'])->name('user_register');
-//         Route::post('/dang-ky', [UsersController::class, 'registerHandle']);
+// Route::get('/trang-ca-nhan', [UsersController::class, 'profile'])->name('user_profile')->middleware('auth:users');
+// Route::post('/trang-ca-nhan', [UsersController::class, 'updateProfile'])->name('updateProfile')->middleware('auth:users');
 
-//         Route::get('/dang-nhap', [UsersController::class, 'login'])->name('user_login');
-//         Route::post('/dang-nhap', [UsersController::class, 'loginHandle']);
+// Route::get('auth/google', [UsersController::class, 'redirectToGoogle'])->name('auth.google');
+// Route::get('auth/google/callback', [UsersController::class, 'handleGoogleCallback']);
 
-//         Route::get('auth/google', [UsersController::class, 'redirectToGoogle'])->name('auth.google');
-//         Route::get('auth/google/callback', [UsersController::class, 'handleGoogleCallback']);
-//         //
-//         Route::get('/san-pham', [ProductController::class, 'index'])->name('products');
-//         //
-//         Route::get('/chi-tiet-san-pham/{id}', [ProductController::class, 'detail'])->name('product_detail');
-//         //
-//         Route::get('/tim-kiem', [ProductController::class, 'search'])->name('search');
-//         //
-//         Route::get('/blog', [BlogController::class, 'index'])->name('blog');
+// Route::post('/dang-xuat', [UsersController::class, 'logout'])->name('user_logout');
 
-//         Route::get('/lien-he', [ContactController::class, 'index'])->name('contact');
-//         Route::post('/lien-he', [ContactController::class, 'contact_handle'])->name('contact_handle');
+// //
+// Route::get('/gio-hang', [CartController::class, 'index'])->name('cart')->middleware(LoginAuthenticate::class);
+// Route::post('/them-gio-hang/{id}', [CartController::class, 'add'])->name('add_cart')->middleware(LoginAuthenticate::class);
+// Route::post('/cap-nhat-gio-hang/{id}', [CartController::class, 'update'])->name('update-cart')->middleware(LoginAuthenticate::class);
+// Route::post('/xoa-gio-hang', [CartController::class, 'delete'])->name('delete_cart')->middleware(LoginAuthenticate::class);
+// Route::post('/xoa-all-gio-hang', [CartController::class, 'clear'])->name('delete_all_cart')->middleware(LoginAuthenticate::class);
 
-//         //
-//         Route::get('/ve-chung-toi', [AboutController::class, 'index'])->name('about');
-//     });
+// //
+// Route::get('/yeu-thich', [WishlistController::class, 'index'])->name('wishlist')->middleware(LoginAuthenticate::class);
+// Route::get('/them-yeu-thich/{id}', [WishlistController::class, 'add'])->name('wishlist_add')->middleware(LoginAuthenticate::class);
+// Route::post('/xoa-yeu-thich', [WishlistController::class, 'delete'])->name('wishlist_delete')->middleware(LoginAuthenticate::class);
 
-//     Route::middleware('auth')->group(function () {
-//         Route::post('/dang-xuat', [UsersController::class, 'logout'])->name('user_logout');
+// //
+// Route::get('/thanh-toan', [CheckoutController::class, 'index'])->name('checkout')->middleware(LoginAuthenticate::class);
+// Route::get('/thanh-toan-thanh-cong', [CheckoutController::class, 'thankyou'])->name('thankyou')->middleware(LoginAuthenticate::class);
+// Route::post('/thanh-toan', [CheckoutController::class, 'process'])->name('process_payment')->middleware(LoginAuthenticate::class);
+// //
+// Route::get('/payment', [PaymentController::class, 'index'])->name('vnpay_payment')->middleware(LoginAuthenticate::class);
+// Route::post('/vnpay/create-payment', [PaymentController::class, 'createPayment'])->name('create_payment')->middleware(LoginAuthenticate::class);
+// Route::get('/vnpay/return-payment/{id}', [PaymentController::class, 'returnPayment'])->name('payment_handle')->middleware(LoginAuthenticate::class);
+// //
+// Route::get('/thong-tin-ca-nhan', [ProfileController::class, 'index'])->name('profile_user')->middleware(LoginAuthenticate::class);
+// Route::post('/chinh-sua-thong-tin', [ProfileController::class, 'update_profile'])->name('update_profile_user')->middleware(LoginAuthenticate::class);
+// Route::post('/chinh-sua-mat-khau', [ProfileController::class, 'update_password'])->name('update_password_profile_user')->middleware(LoginAuthenticate::class);
+// Route::post('/chinh-sua-anh', [ProfileController::class, 'update_avatar'])->name('update_avatar_profile_user')->middleware(LoginAuthenticate::class);
 
-//         Route::get('/trang-ca-nhan', [UsersController::class, 'profile'])->name('user_profile');
-//         Route::post('/trang-ca-nhan', [UsersController::class, 'updateProfile'])->name('updateProfile');
 
-//         //
-//         Route::get('/gio-hang', [CartController::class, 'index'])->name('cart');
-//         Route::post('/them-gio-hang/{id}', [CartController::class, 'add'])->name('add_cart');
-//         Route::post('/cap-nhat-gio-hang/{id}', [CartController::class, 'update'])->name('update-cart');
-//         Route::post('/xoa-gio-hang', [CartController::class, 'delete'])->name('delete_cart');
-//         Route::post('/xoa-all-gio-hang', [CartController::class, 'clear'])->name('delete_all_cart');
+// Route::get('/blog', [BlogController::class, 'index'])->name('blog');
 
-//         //
-//         Route::get('/yeu-thich', [WishlistController::class, 'index'])->name('wishlist');
-//         Route::get('/them-yeu-thich/{id}', [WishlistController::class, 'add'])->name('wishlist_add');
-//         Route::post('/xoa-yeu-thich', [WishlistController::class, 'delete'])->name('wishlist_delete');
+// Route::get('/lien-he', [ContactController::class, 'index'])->name('contact');
+// Route::post('/lien-he', [ContactController::class, 'contact_handle'])->name('contact_handle');
 
-//         //
-//         Route::get('/thanh-toan', [CheckoutController::class, 'index'])->name('checkout');
-//         Route::get('/thanh-toan-thanh-cong', [CheckoutController::class, 'thankyou'])->name('thankyou');
-//         Route::post('/thanh-toan', [CheckoutController::class, 'process'])->name('process_payment');
-//         //
-//         Route::get('/payment', [PaymentController::class, 'index'])->name('vnpay_payment');
-//         Route::post('/vnpay/create-payment', [PaymentController::class, 'createPayment'])->name('create_payment');
-//         Route::get('/vnpay/return-payment/{id}', [PaymentController::class, 'returnPayment'])->name('payment_handle');
-//         //
-//         Route::get('/thong-tin-ca-nhan', [ProfileController::class, 'index'])->name('profile_user');
-//         Route::post('/chinh-sua-thong-tin', [ProfileController::class, 'update_profile'])->name('update_profile_user');
-//         Route::post('/chinh-sua-mat-khau', [ProfileController::class, 'update_password'])->name('update_password_profile_user');
-//         Route::post('/chinh-sua-anh', [ProfileController::class, 'update_avatar'])->name('update_avatar_profile_user');
-//     });
-// });
+// //
+// Route::get('/ve-chung-toi', [AboutController::class, 'index'])->name('about');
+
+// Route::get('/san-pham', [ProductController::class, 'index'])->name('products');
+// //
+// Route::get('/chi-tiet-san-pham/{id}', [ProductController::class, 'detail'])->name('product_detail');
+// //
+// Route::get('/tim-kiem', [ProductController::class, 'search'])->name('search');
+
+//Users Route
+
+Route::prefix('/')->group(function () {
+
+    Route::middleware(HomeAuthenticate::class)->group(function () {
+
+        Route::get('/dang-ky', [UsersController::class, 'register'])->name('user_register');
+        Route::post('/dang-ky', [UsersController::class, 'registerHandle']);
+
+        Route::get('/dang-nhap', [UsersController::class, 'login'])->name('user_login');
+        Route::post('/dang-nhap', [UsersController::class, 'loginHandle']);
+
+        Route::get('auth/google', [UsersController::class, 'redirectToGoogle'])->name('auth.google');
+        Route::get('auth/google/callback', [UsersController::class, 'handleGoogleCallback']);
+    });
+
+    //
+    Route::get('/', [HomeController::class, 'index'])->name('home');
+    //
+    Route::get('/san-pham', [ProductController::class, 'index'])->name('products');
+    //
+    Route::get('/chi-tiet-san-pham/{id}', [ProductController::class, 'detail'])->name('product_detail');
+    //
+    Route::get('/tim-kiem', [ProductController::class, 'search'])->name('search');
+    //
+    Route::get('/blog', [BlogController::class, 'index'])->name('blog');
+
+    Route::get('/lien-he', [ContactController::class, 'index'])->name('contact');
+    Route::post('/lien-he', [ContactController::class, 'contact_handle'])->name('contact_handle');
+
+    //
+    Route::get('/ve-chung-toi', [AboutController::class, 'index'])->name('about');
+
+    Route::middleware(LoginAuthenticate::class)->group(function () {
+        Route::post('/dang-xuat', [UsersController::class, 'logout'])->name('user_logout');
+
+        Route::get('/trang-ca-nhan', [UsersController::class, 'profile'])->name('user_profile');
+        Route::post('/trang-ca-nhan', [UsersController::class, 'updateProfile'])->name('updateProfile');
+
+        //
+        Route::get('/gio-hang', [CartController::class, 'index'])->name('cart');
+        Route::post('/them-gio-hang/{id}', [CartController::class, 'add'])->name('add_cart');
+        Route::post('/cap-nhat-gio-hang/{id}', [CartController::class, 'update'])->name('update-cart');
+        Route::post('/xoa-gio-hang', [CartController::class, 'delete'])->name('delete_cart');
+        Route::post('/xoa-all-gio-hang', [CartController::class, 'clear'])->name('delete_all_cart');
+
+        //
+        Route::get('/yeu-thich', [WishlistController::class, 'index'])->name('wishlist');
+        Route::get('/them-yeu-thich/{id}', [WishlistController::class, 'add'])->name('wishlist_add');
+        Route::post('/xoa-yeu-thich', [WishlistController::class, 'delete'])->name('wishlist_delete');
+
+        //
+        Route::get('/thanh-toan', [CheckoutController::class, 'index'])->name('checkout');
+        Route::get('/thanh-toan-thanh-cong', [CheckoutController::class, 'thankyou'])->name('thankyou');
+        Route::post('/thanh-toan', [CheckoutController::class, 'process'])->name('process_payment');
+        //
+        Route::get('/payment', [PaymentController::class, 'index'])->name('vnpay_payment');
+        Route::post('/vnpay/create-payment', [PaymentController::class, 'createPayment'])->name('create_payment');
+        Route::get('/vnpay/return-payment/{id}', [PaymentController::class, 'returnPayment'])->name('payment_handle');
+        //
+        Route::get('/thong-tin-ca-nhan', [ProfileController::class, 'index'])->name('profile_user');
+        Route::post('/chinh-sua-thong-tin', [ProfileController::class, 'update_profile'])->name('update_profile_user');
+        Route::post('/chinh-sua-mat-khau', [ProfileController::class, 'update_password'])->name('update_password_profile_user');
+        Route::post('/chinh-sua-anh', [ProfileController::class, 'update_avatar'])->name('update_avatar_profile_user');
+    });
+});
 
 //Admins Route
 
@@ -186,6 +191,9 @@ Route::prefix('/admin')->group(function () {
     Route::middleware('auth:admins')->group(function () {
 
         Route::get('/', [DashBoardController::class, 'dashboard'])->name('dashboards');
+
+        Route::get('search-dashboard', [DashBoardController::class, 'search'])->name('search-dashboard');
+
         Route::get('/dang-xuat', [AdminsController::class, 'logout'])->name('logout');
 
         //Admins

@@ -199,14 +199,18 @@ class PurchasesController extends Controller
     {
         $purchaseDetails = PurchaseDetails::where('purchases_id', $id)->get();
 
+        // dd($purchaseDetails);
+
         foreach ($purchaseDetails as $detail) {
             // Tìm kiếm chi tiết sản phẩm với product_id, color_id và size_id cụ thể
-            $productDetail = ProductDetails::where('product_id', $detail->product_id)
-                ->where('color_id', $detail->color_id)
-                ->where('size_id', $detail->size_id)
+            $productDetail = ProductDetails::where('product_id', $detail->products_id)
+                ->where('color_id', $detail->colors_id)
+                ->where('size_id', $detail->sizes_id)
                 ->first(); // Sử dụng first() để lấy bản ghi đầu tiên nếu có
 
+            // dd($productDetail, $detail);
             if ($productDetail) {
+
                 // Nếu tìm thấy, chỉ cập nhật quantity
                 $productDetail->quantity += $detail->quantity;
             } else {

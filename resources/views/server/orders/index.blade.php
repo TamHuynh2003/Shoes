@@ -69,8 +69,10 @@
 
 <script src="{{ asset('admin_template/assets/jquery-3.7.1.min.js') }}"></script>
 <script>
-    $(document).ready(function() {
-        $('#search').on('keyup', function(event) {
+    var $j = jQuery.noConflict();
+
+    $j(document).ready(function() {
+        $j('#search').on('keyup', function(event) {
             if (event.key === 'Enter') {
                 searchOrders();
             }

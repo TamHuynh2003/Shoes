@@ -42,10 +42,12 @@ class ProductsController extends Controller
     public function search(Request $req)
     {
         $keyword = $req->input('data');
+        $productImage = ProductImages::all();
+
 
         $listProducts = Products::where('name', 'like', "%$keyword%")->where('is_deleted', 1)->get();
 
-        return view('server.products.search', compact('listProducts'));
+        return view('server.products.search', compact('listProducts', 'productImage'));
     }
 
     // public function show($id)
