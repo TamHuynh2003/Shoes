@@ -40,4 +40,14 @@ class Products extends Model
     {
         return $this->belongsTo(Providers::class, 'providers_id');
     }
+
+    public function availableSizes()
+    {
+        return $this->productDetails()->with('size')->get()->pluck('size')->unique('id');
+    }
+
+    public function availableColors()
+    {
+        return $this->productDetails()->with('color')->get()->pluck('color')->unique('id');
+    }
 }

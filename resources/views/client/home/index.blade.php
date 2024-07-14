@@ -87,12 +87,16 @@
 </div>
 
 <!-- Product -->
-<section class="bg0 p-t-50 p-b-150">
-    <title>Sản Phẩm Bán Chạy</title>
+<section class="bg0 p-t-50 p-b-50">
+    <div class="flex-w flex-sb-m p-b-52" style="margin-left: 200px">
+        <div class="flex-w flex-l-m filter-tope-group m-tb-10">
+            <h3>Sản Phẩm Nổi Bật</h3>
+        </div>
+    </div>
     <div class="container">
         <div class="row isotope-grid">
 
-            @foreach ($list_products as $item)
+            @foreach ($list_products_new as $item)
             <div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item women">
                 <!-- Block2 -->
                 <div class="block2">
@@ -132,6 +136,57 @@
             </div>
             @endforeach
 
+        </div>
+    </div>
+</section>
+
+<section class="sec-relate-product bg0 p-t-45 p-b-105">
+    <div class="flex-w flex-sb-m p-b-52" style="margin-left: 200px">
+        <div class="flex-w flex-l-m filter-tope-group m-tb-10">
+            <h3>Sản Phẩm Bán Chạy</h3>
+        </div>
+    </div>
+    <div class="container">
+
+        <div class="wrap-slick2">
+            <div class="slick2">
+                @foreach ($list_products_best_selling as $item)
+                <div class="item-slick2 p-l-15 p-r-15 p-t-15 p-b-15">
+
+                    <div class="block2">
+                        <div class="block2-pic hov-img0">
+                            <img src="{{ asset($item->images->first()->url) }}" alt="IMG-PRODUCT">
+                            <a href="#"
+                                class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
+                                Xem Giày
+                            </a>
+                        </div>
+
+                        <div class="block2-txt flex-w flex-t p-t-14">
+                            <div class="block2-txt-child1 flex-col-l ">
+                                <a href="" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
+                                    {{ $item->name }}
+                                </a>
+
+                                <span class="stext-105 cl3">
+                                    {{number_format($item->selling_price) }}
+                                </span>
+                            </div>
+
+                            <div class="block2-txt-child2 flex-r p-t-3">
+                                <a href="{{ route('wishlist_add', ['id' => $item->id]) }}"
+                                    class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
+                                    <img class="icon-heart1 dis-block trans-04"
+                                        src="{{ asset('images/products/icons/icon-heart-01.png') }}" alt="ICON">
+                                    <img class="icon-heart2 dis-block trans-04 ab-t-l"
+                                        src="{{ asset('images/products/icons/icon-heart-02.png') }}" alt="ICON">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                @endforeach
+            </div>
         </div>
     </div>
 </section>

@@ -28,7 +28,9 @@ class ProductController extends Controller
         }
         $selected = $request->category_id;
         $categories = Categories::all();
-        return view('client.products.index', compact('product', 'categories', 'selected'));
+        $colors = Colors::all();
+        $sizes = Sizes::all();
+        return view('client.products.index', compact('product', 'categories', 'colors', 'sizes', 'selected'));
     }
 
     public function detail($id)

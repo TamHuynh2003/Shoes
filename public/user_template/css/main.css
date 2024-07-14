@@ -39,6 +39,27 @@ Input, textarea : 14px/1.6 '', Arial, sans-serif;
 /*//////////////////////////////////////////////////////////////////
 [ FONT ]*/
 
+.size-selector,
+.color-selector {
+  border: 1px solid #ccc;
+  padding: 5px 10px;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+}
+
+.size-selector:hover,
+.color-selector:hover {
+  background-color: #b3d1ff;
+  /* Light blue background on hover */
+}
+
+input[type="radio"]:checked+.size-selector,
+input[type="radio"]:checked+.color-selector {
+  background-color: #66a3ff;
+  /* Darker blue background when selected */
+}
+
+
 .profile-img-main {
   max-width: 150px;
   /* Điều chỉnh kích thước hình ảnh hồ sơ */
