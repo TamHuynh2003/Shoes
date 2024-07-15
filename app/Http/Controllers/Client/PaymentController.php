@@ -84,7 +84,6 @@ class PaymentController extends Controller
 
     public function createPayment(Request $request)
     {
-
         $carts = CustomersCarts::where('users_id', auth('users')->user()->id)->with('product_detail')->get();
         $order = new Orders();
         $order->order_date =  date("Y-m-d");

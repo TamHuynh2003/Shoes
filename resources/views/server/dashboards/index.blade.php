@@ -8,31 +8,39 @@
     </div>
 </div>
 
-<label for="date" class="col-1 col-form-label">Ngày Bắt Đầu</label>
-<div class="col-5">
-    <div class="input-group date datePicker">
-        <input type="text" class="form-control" id="dateStart" />
-        <span class="input-group-append">
-            <span class="input-group-text bg-light d-block">
-                <i class="fa fa-calendar"></i>
-            </span>
-        </span>
+<div class="container">
+    <div class="row align-items-center">
+        <label for="dateStart" class="col-form-label">Ngày Bắt Đầu</label>
+        <div class="col-4">
+            <div class="input-group date datePicker">
+                <input type="text" class="form-control" id="dateStart" />
+                <span class="input-group-append">
+                    <span class="input-group-text bg-light d-block">
+                        <i class="fa fa-calendar"></i>
+                    </span>
+                </span>
+            </div>
+        </div>
+
+        <label for="dateEnd" class="col-form-label">Ngày Kết Thúc</label>
+        <div class="col-4">
+            <div class="input-group date datePicker">
+                <input type="text" class="form-control" id="dateEnd" />
+                <span class="input-group-append">
+                    <span class="input-group-text bg-light d-block">
+                        <i class="fa fa-calendar"></i>
+                    </span>
+                </span>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-3" style="margin-bottom: 20px">
+        <div class="">
+            <button class="btn btn-primary" id="btnSearch">Tìm</button>
+        </div>
     </div>
 </div>
-
-<label for="date" class="col-1 col-form-label">Ngày Kết Thúc</label>
-<div class="col-5">
-    <div class="input-group date datePicker">
-        <input type="text" class="form-control" id="dateEnd" />
-        <span class="input-group-append">
-            <span class="input-group-text bg-light d-block">
-                <i class="fa fa-calendar"></i>
-            </span>
-        </span>
-    </div>
-</div>
-
-<button class="btn btn-primary" id="btnSearch">Tìm</button>
 
 <div class="row">
 

@@ -21,6 +21,9 @@ class DatabaseSeeder extends Seeder
 
         $this->call([
 
+            BlogsSeeder::class,
+            AboutsSeeder::class,
+
             SizesSeeder::class,
             ColorsSeeder::class,
 
