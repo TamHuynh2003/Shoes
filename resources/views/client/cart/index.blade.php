@@ -32,16 +32,27 @@
                                 <td class="column-3">{{ $item->product_detail->size->name }}</td>
                                 <td class="column-3">
                                     <div class="wrap-num-product flex-w m-r-40">
-                                        <div class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m">
-                                            <i class="fs-16 zmdi zmdi-minus"></i>
-                                        </div>
+                                        <form action="{{ route('giam-so-luong') }}" method="POST">
+                                            @csrf
+                                            <div class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m">
+
+                                                <button name="giam" value="{{ $item->id }}">
+                                                    <i class="fs-16 zmdi zmdi-minus"></i>
+                                                </button>
+                                            </div>
+                                        </form>
 
                                         <input class="mtext-104 cl3 txt-center num-product" type="number"
                                             name="quantity" readonly value="{{ $item->quantity }}">
 
-                                        <div class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m">
-                                            <i class="fs-16 zmdi zmdi-plus"></i>
-                                        </div>
+                                        <form action="{{ route('tang-so-luong') }}" method="POST">
+                                            @csrf
+                                            <div class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m">
+                                                <button name="tang" value="{{ $item->id }}">
+                                                    <i class="fs-16 zmdi zmdi-plus"></i>
+                                                </button>
+                                            </div>
+                                        </form>
                                     </div>
                                 </td>
                                 <td class="column-6"> {{ number_format($item->total_price) }}</td>
@@ -105,8 +116,7 @@
 
                         <div class="size-209 p-r-18 p-r-0-sm w-full-ssm">
                             <p class="stext-111 cl6 p-t-2">
-                                There are no shipping methods available. Please double check your address, or contact us
-                                if you need any help.
+
                             </p>
                         </div>
                     </div>

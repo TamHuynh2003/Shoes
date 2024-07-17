@@ -118,7 +118,7 @@
                             </a>
 
                             <span class="stext-105 cl3">
-                                {{ number_format($item->selling_price) }}
+                                {{ number_format($item->selling_price) }} VND
                             </span>
                         </div>
 
@@ -169,7 +169,7 @@
                                 </a>
 
                                 <span class="stext-105 cl3">
-                                    {{number_format($item->selling_price) }}
+                                    {{number_format($item->selling_price) }} VND
                                 </span>
                             </div>
 

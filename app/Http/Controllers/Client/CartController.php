@@ -38,7 +38,7 @@ class CartController extends Controller
         $cart->product_detail_id = $product_detail->id;
         $cart->save();
 
-        return redirect()->route('product_detail', ['id' => $id]);
+        return redirect()->route('product_detail', ['id' => $id])->with('alert', 'Thêm sản phẩm thành công');
     }
     public function update(Request $request, Products $product)
     {
@@ -47,9 +47,23 @@ class CartController extends Controller
     {
         $cart = CustomersCarts::find($request->id);
         $cart->delete();
-        return redirect()->route('cart');
+        return redirect()->route('cart')->with('alert', 'Xoá sản phẩm thành công');
     }
-    public function clear()
+    public function tangsoluong(Request $request)
     {
+        $cart = CustomersCarts::find($request->tang);
+        $cart->quantity += 1;
+        $cart->save();
+        return redirect()->route('cart')->with('alert', 'Tăng số lượng thành công');
+    }
+    public function giamsoluong(Request $request)
+    {
+        $cart = CustomersCarts::find($request->giam);
+        if ($cart->quantity != 1) {
+            $cart->quantity -= 1;
+            $cart->save();
+            return redirect()->route('cart')->with('alert', 'Giảm số lượng thành công');
+        }
+        return redirect()->route('cart')->with('alert', 'Không thể giảm số lượng');
     }
 }

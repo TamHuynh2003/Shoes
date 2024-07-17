@@ -26,7 +26,7 @@ class WishlistController extends Controller
         $wishlist->selling_price = $products->selling_price;
         $wishlist->product_id = $products->id;
         $wishlist->save();
-        return redirect()->route('home');
+        return redirect()->route('home')->with('alert', 'Thêm vào danh sách yêu thích thành công');
     }
     public function delete(Request $request)
     {

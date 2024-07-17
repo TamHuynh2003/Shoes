@@ -18,7 +18,7 @@
         <div class="card product-sales-main">
             <div class="card-header border-bottom d-flex justify-content-between align-items-center">
                 <div>
-                    {{-- <a href="{{route('orders.trash')}}" class="btn btn-primary me-2">Thùng Rác</a> --}}
+                    <a href="{{route('orders.trash')}}" class="btn btn-primary me-2">Thùng Rác</a>
 
                     <a href="" class="btn btn-primary me-2">View PDF</a>
                 </div>

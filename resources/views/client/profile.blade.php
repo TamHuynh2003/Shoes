@@ -96,10 +96,10 @@
                             <label class="col-sm-2 col-form-label">Giới tính</label>
                             <div class="col-sm-10">
                                 <select name="genders_id" class="form-control">
-                                    <option value="1" {{ auth('users')->user()->genders_id == 1 ? 'selected' : ''
-                                        }}>Nam</option>
-                                    <option value="2" {{ auth('users')->user()->genders_id == 2 ? 'selected' : ''
-                                        }}>Nữ</option>
+                                    <option value="1" {{ auth('users')->user()->genders_id == 1 ? 'selected' : '' }}>Nam
+                                    </option>
+                                    <option value="2" {{ auth('users')->user()->genders_id == 2 ? 'selected' : '' }}>Nữ
+                                    </option>
                                 </select>
                             </div>
                         </div>
@@ -147,7 +147,7 @@
                 <div class="card-body">
                     <h4 class="card-title">Đơn Hàng {{ $order->id }}</h4>
 
-                    <div class="d-flex" style="justify-content: space-between">
+                    <div class="d-flex mb-2" style="justify-content: space-between">
 
                         <strong>
                             Ngày Mua: {{ $order->order_date }}
@@ -155,6 +155,12 @@
                         <strong>
                             Trạng Thái: {{ $order->status->name }}
                         </strong>
+
+                        <form action="{{ route('remove_order') }}" method="POST">
+                            @csrf
+                            <button class="btn btn-danger" @if ($order->status_id >= 3) disabled @endif
+                                name="id" value="{{ $order->id }}" type="submit">Huỷ Đơn</button>
+                        </form>
                     </div>
                     <table class="table-shopping-cart">
                         <tr class="table_head">
@@ -162,7 +168,6 @@
                             <th class="column-2">Giày</th>
                             <th class="column-3">Số Lượng</th>
                             <th class="column-4">Giá</th>
-
                         </tr>
                         @foreach ($order->order_details as $item)
                         <tr class="table_row">
@@ -175,7 +180,6 @@
                             <td class="column-2"> {{ $item->product->name }}</td>
                             <td class="column-3"> {{ $item->quantity }}</td>
                             <td class="column-4"> {{ number_format($item->selling_price) }} VND</td>
-
                         </tr>
                         @endforeach
                     </table>

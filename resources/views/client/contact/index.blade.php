@@ -4,7 +4,7 @@
 <!-- Title page -->
 <div class="css_update">
     <section class="bg-img1 txt-center p-lr-15 p-tb-92"
-        style="background-image: url({{ asset('user_template/images/bg-01.jpg') }});">
+        style="background-image: url({{ asset('user_template/images/contact.jpg') }});">
 
         <h2 class="ltext-105 cl0 txt-center">
             Liên Hệ

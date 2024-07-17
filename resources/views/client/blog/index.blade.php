@@ -4,7 +4,7 @@
 <!-- Title page -->
 <div class="css_update">
     <section class="bg-img1 txt-center p-lr-15 p-tb-92"
-        style="background-image: url({{ asset('user_template/images/bg-02.jpg') }});">
+        style="background-image: url({{ asset('user_template/images/blogs1.jpg') }});">
         <h2 class="ltext-105 cl0 txt-center">
             Blog
         </h2>
@@ -21,8 +21,8 @@
                     <!-- item blog -->
                     @foreach ($blog as $item)
                     <div class="p-b-63">
-                        <a href="blog-detail.html" class="hov-img0 how-pos5-parent">
-                            <img src="{{ asset('user_template/images/blog-04.jpg') }}" alt="IMG-BLOG">
+                        <a href="#" class="hov-img0 how-pos5-parent">
+                            <img src="{{ asset($item->image) }}" alt="IMG-BLOG">
 
                             <div class="flex-col-c-m size-123 bg9 how-pos5">
                                 <span class="ltext-107 cl2 txt-center">
@@ -37,7 +37,7 @@
 
                         <div class="p-t-32">
                             <h4 class="p-b-15">
-                                <a href="blog-detail.html" class="ltext-108 cl2 hov-cl1 trans-04">
+                                <a href="#" class="ltext-108 cl2 hov-cl1 trans-04">
                                     {{ $item->title }}
                                 </a>
                             </h4>
