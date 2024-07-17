@@ -91,12 +91,6 @@
                                                     </tr>
                                                     <tr>
                                                         <td>
-                                                            <strong>Lương :</strong> {{number_format($admins->salary)}}
-                                                            VND
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>
                                                             <strong>Trạng Thái :</strong> {{ $admins->status->name }}
                                                         </td>
                                                     </tr>

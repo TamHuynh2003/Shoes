@@ -33,8 +33,8 @@
             <!--Delete-->
             <a data-name="{{ $admins->fullname }}" class="btn btn-sm btn-outline-secondary border me-2 delete-link"
                 data-bs-toggle="tooltip" data-route="{{ route('admins.delete', ['id' => $admins->id]) }}"
-                data-bs-original-title=" Xóa">
-                <i class="fe fe-trash-2 "></i>
+                data-bs-original-title=" Khóa">
+                <i class="fe fe-lock "></i>
             </a>
 
         </div>
@@ -51,11 +51,11 @@
                 var name = this.getAttribute('data-name');
 
                 Swal.fire({
-                    title: 'Xác Nhận Xóa Tài Khoản?',
-                    text: 'Bạn có chắc muốn xóa tài khoản ' + " '" + name + "' " + ' không?',
+                    title: 'Xác Nhận Khóa Tài Khoản?',
+                    text: 'Bạn có chắc muốn khóa tài khoản ' + " '" + name + "' " + ' không?',
                     icon: 'warning',
                     showCancelButton: true,
-                    confirmButtonText: 'Xóa',
+                    confirmButtonText: 'Khóa',
                     cancelButtonText: 'Hủy',
                 }).then(function (result) {
                     if (result.isConfirmed) {

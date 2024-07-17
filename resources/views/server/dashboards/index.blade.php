@@ -8,10 +8,11 @@
     </div>
 </div>
 
-<div class="container">
-    <div class="row align-items-center">
-        <label for="dateStart" class="col-form-label">Ngày Bắt Đầu</label>
-        <div class="col-4">
+<div class="main">
+    <div class="row " style="display: flex;flex-wrap:nowrap ">
+
+        <label for="dateStart">Ngày Bắt Đầu</label>
+        <div class="col-3">
             <div class="input-group date datePicker">
                 <input type="text" class="form-control" id="dateStart" />
                 <span class="input-group-append">
@@ -22,8 +23,8 @@
             </div>
         </div>
 
-        <label for="dateEnd" class="col-form-label">Ngày Kết Thúc</label>
-        <div class="col-4">
+        <label for="dateEnd">Ngày Kết Thúc</label>
+        <div class="col-3">
             <div class="input-group date datePicker">
                 <input type="text" class="form-control" id="dateEnd" />
                 <span class="input-group-append">
@@ -33,10 +34,8 @@
                 </span>
             </div>
         </div>
-    </div>
 
-    <div class="row mt-3" style="margin-bottom: 20px">
-        <div class="">
+        <div class="col-2">
             <button class="btn btn-primary" id="btnSearch">Tìm</button>
         </div>
     </div>

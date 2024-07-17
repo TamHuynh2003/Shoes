@@ -78,7 +78,7 @@
                                     <div class="d-flex align-items-stretch">
                                         <!--Edit-->
                                         <a class="btn btn-sm btn-outline-primary border me-2"
-                                            href="{{ route('products.update', ['id' => $products->id]) }}"
+                                            href="{{ route('products.edit', ['id' => $products->id]) }}"
                                             data-bs-toggle="tooltip" data-bs-original-title="Khôi Phục">
                                             <i class="fe fe-rotate-ccw"></i>
                                         </a>

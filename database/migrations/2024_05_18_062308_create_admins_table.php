@@ -27,10 +27,9 @@ return new class extends Migration
             $table->date('birth_date')->nullable();
             $table->string('avatar')->nullable();
 
-            $table->float('salary')->nullable();
             $table->timestamp('login_at');
-
             $table->integer('google_id')->nullable();
+
             $table->timestamps();
         });
     }

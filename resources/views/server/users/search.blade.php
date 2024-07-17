@@ -21,10 +21,10 @@
     <td>
         <div class="d-flex align-items-stretch">
             <!--Edit-->
-            <a class="btn btn-sm btn-outline-primary border me-2" data-bs-toggle="tooltip"
+            {{-- <a class="btn btn-sm btn-outline-primary border me-2" data-bs-toggle="tooltip"
                 href="{{ route('users.edit', ['id' => $users->id]) }}" data-bs-original-title="Sửa">
                 <i class="fe fe-edit-2 "></i>
-            </a>
+            </a> --}}
             <!--Details-->
             <a class=" btn btn-sm btn-outline-info border me-2" data-bs-toggle="tooltip"
                 href="{{route('users.show',['id' => $users->id])}}" data-bs-original-title="Chi Tiết">
@@ -33,8 +33,8 @@
             <!--Delete-->
             <a data-name="{{ $users->fullname }}" class="btn btn-sm btn-outline-secondary border me-2 delete-link"
                 data-bs-toggle="tooltip" data-route="{{ route('users.delete', ['id' => $users->id]) }}"
-                data-bs-original-title=" Xóa">
-                <i class="fe fe-trash-2 "></i>
+                data-bs-original-title=" Khóa">
+                <i class="fe fe-lock "></i>
             </a>
 
         </div>
@@ -51,11 +51,11 @@
                 var name = this.getAttribute('data-name');
 
                 Swal.fire({
-                    title: 'Xác Nhận Xóa Tài Khoản?',
-                    text: 'Bạn có chắc muốn xóa tài khoản ' + " '" + name + "' " + ' không?',
+                    title: 'Xác Nhận Khóa Tài Khoản?',
+                    text: 'Bạn có chắc muốn khóa tài khoản ' + " '" + name + "' " + ' không?',
                     icon: 'warning',
                     showCancelButton: true,
-                    confirmButtonText: 'Xóa',
+                    confirmButtonText: 'khóa',
                     cancelButtonText: 'Hủy',
                 }).then(function (result) {
                     if (result.isConfirmed) {

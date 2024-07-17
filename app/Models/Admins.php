@@ -20,6 +20,7 @@ class Admins extends Authenticatable
         'phone_number',
         'username',
         'password',
+        'salary',
         'google_id',
     ];
 

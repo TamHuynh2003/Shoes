@@ -90,7 +90,7 @@ class UsersController extends Controller
         }
     }
 
-    
+
 
     // public function updateProfile(Request $req)
     // {
@@ -220,59 +220,59 @@ class UsersController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit($id)
-    {
-        $users = Users::find($id);
+    // public function edit($id)
+    // {
+    //     $users = Users::find($id);
 
-        $genders = Genders::all();
-        $status = UserStates::all();
+    //     $genders = Genders::all();
+    //     $status = UserStates::all();
 
-        return view('server.users.update', compact('users', 'genders', 'status'));
-    }
+    //     return view('server.users.update', compact('users', 'genders', 'status'));
+    // }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $req,  $id)
-    {
-        $users = Users::find($id);
+    // public function update(Request $req,  $id)
+    // {
+    //     $users = Users::find($id);
 
-        if (empty($users)) {
-            return redirect()->route('users.index')->with('alert', 'Tài khoản người dùng không tồn tại!!');
-        }
+    //     if (empty($users)) {
+    //         return redirect()->route('users.index')->with('alert', 'Tài khoản người dùng không tồn tại!!');
+    //     }
 
-        $users->fullname = $req->fullname;
-        $users->email = $req->email;
+    //     $users->fullname = $req->fullname;
+    //     $users->email = $req->email;
 
-        $users->address = $req->address;
-        $users->phone_number = $req->phone_number;
+    //     $users->address = $req->address;
+    //     $users->phone_number = $req->phone_number;
 
-        $users->password = $req->password;
-        $users->birth_date = $req->birth_date;
+    //     $users->password = $req->password;
+    //     $users->birth_date = $req->birth_date;
 
-        $users->genders_id = $req->genders_id;
-        $users->status_id = $req->status_id;
+    //     $users->genders_id = $req->genders_id;
+    //     $users->status_id = $req->status_id;
 
-        if ($req->hasFile('avatar')) {
+    //     if ($req->hasFile('avatar')) {
 
-            // $old_image = 'images/users/' . $users->avatar;
+    //         // $old_image = 'images/users/' . $users->avatar;
 
-            // if (File::exists($old_image)) {
-            //     File::exists($old_image);
-            // }
+    //         // if (File::exists($old_image)) {
+    //         //     File::exists($old_image);
+    //         // }
 
-            $file = $req->file('avatar');
-            $imageName = $file->getClientOriginalName();
+    //         $file = $req->file('avatar');
+    //         $imageName = $file->getClientOriginalName();
 
-            // $path = $file->store('admin_images', 'public');
-            $path = $file->storeAs('images/users', $imageName);
-            $users->avatar = $path;
-        }
+    //         // $path = $file->store('admin_images', 'public');
+    //         $path = $file->storeAs('images/users', $imageName);
+    //         $users->avatar = $path;
+    //     }
 
-        $users->save();
+    //     $users->save();
 
-        return redirect()->route('users.index')->with('alert', 'Cập nhật tài khoản người dùng thành công');
-    }
+    //     return redirect()->route('users.index')->with('alert', 'Cập nhật tài khoản người dùng thành công');
+    // }
 
     /**
      * Remove the specified resource from storage.
@@ -281,18 +281,20 @@ class UsersController extends Controller
     {
         $users = Users::find($id);
 
-        if (!$users) {
-            return redirect()->route('users.index')->with('alert', "Tài khoản người dùng không tồn tại !!");
+        if ($users->status_id == 2) {
+            $users->status_id = 1;
+            $users->save();
+            return redirect()->route('users.index')->with('alert', 'Mở khóa tài khoản thành công');
         }
 
         if ($users->status_id == 2) {
-            return redirect()->route('users.index')->with('alert', 'Tài khoản người dùng đã được xóa trước đó !!');
+            return redirect()->route('users.index')->with('alert', 'Tài khoản đã được khóa trước đó !!');
         }
 
         $users->status_id = 2;
         $users->save();
 
-        return redirect()->route('users.index')->with('alert', 'Xóa tài khoản người dùng thành công');
+        return redirect()->route('users.index')->with('alert', 'Khóa tài khoản thành công');
     }
 
     public function viewPDF()

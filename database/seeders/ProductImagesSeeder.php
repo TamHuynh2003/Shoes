@@ -28,7 +28,7 @@ class ProductImagesSeeder extends Seeder
 
             if (isset($categoryImages[$categoryId])) {
                 $images = $categoryImages[$categoryId];
-                $randomCount = rand(1, 3);
+                $randomCount = rand(1, 2);
 
                 for ($j = 1; $j <= $randomCount; $j++) {
                     $randomImageIndex = array_rand($images);

@@ -89,14 +89,6 @@
                     </div>
 
                     <div class="mb-3">
-                        <label class="form-label">Lương </label>
-
-                        <div class="input-group input-group-merge">
-                            <input type="text" name="salary" value="{{$admins->salary}}" class="form-control">
-                        </div>
-                    </div>
-
-                    <div class="mb-3">
                         <label class="form-label">Giới Tính</label>
 
                         <select name="genders_id" class="form-select">

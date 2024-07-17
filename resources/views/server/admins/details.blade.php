@@ -11,12 +11,6 @@
     </div>
 </div>
 
-<div class="card-header border-bottom">
-    <div>
-        <a href=" {{route('admins.index')}}" class="btn btn-primary me-2">Trở Lại</a>
-    </div>
-</div>
-
 <div class="row">
 
     <div class="col-xl">
@@ -72,11 +66,6 @@
                     </div>
 
                     <div class="mb-3">
-                        <label class="form-label">Lương</label>
-                        <input type="text" value="{{number_format($admins->salary)}}" readonly class="form-control">
-                    </div>
-
-                    <div class="mb-3">
                         <label class="form-label">Đăng Nhập </label>
                         <input type="text" value="{{$admins->login_at}}" readonly class="form-control">
                     </div>
@@ -93,7 +82,11 @@
                         <label class="form-label">Trạng Thái</label>
                         <input type="text" value="{{$admins->status->name}}" readonly class="form-control">
                     </div>
-
+                    <br>
+                    <br>
+                    <div class="mb-3">
+                        <a href=" {{route('admins.index')}}" class="btn btn-primary me-2">Trở Lại</a>
+                    </div>
                 </form>
             </div>
         </div>

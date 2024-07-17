@@ -58,7 +58,7 @@
                     <form class="form-horizontal" method="POST" action="{{ route('update_profile_user') }}">
                         @csrf
                         <div class="form-group row">
-                            <label class="col-sm-2 col-form-label">Fullname</label>
+                            <label class="col-sm-2 col-form-label">Họ và tên</label>
                             <div class="col-sm-10">
                                 <input type="text" name="fullname" value="{{ auth('users')->user()->fullname }}"
                                     class="form-control">
@@ -72,35 +72,34 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label class="col-sm-2 col-form-label">Address</label>
+                            <label class="col-sm-2 col-form-label">Địa Chỉ</label>
                             <div class="col-sm-10">
                                 <textarea class="form-control"
                                     name="address">{{ auth('users')->user()->address }}</textarea>
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label class="col-sm-2 col-form-label">Phone Number</label>
+                            <label class="col-sm-2 col-form-label">Số điện thoại </label>
                             <div class="col-sm-10">
                                 <input type="text" name="phone_number" value="{{ auth('users')->user()->phone_number }}"
                                     class="form-control">
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label class="col-sm-2 col-form-label">Birth Date</label>
+                            <label class="col-sm-2 col-form-label">Ngày Sinh</label>
                             <div class="col-sm-10">
-                                <input type="date" name="birth_date" value="{{ auth('users')->user()->birt_date }}"
+                                <input type="date" name="birth_date" value="{{ auth('users')->user()->birth_date }}"
                                     class="form-control">
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label class="col-sm-2 col-form-label">Gender</label>
+                            <label class="col-sm-2 col-form-label">Giới tính</label>
                             <div class="col-sm-10">
-                                <select class="form-control" name="genders_id">
-                                    @foreach ($genders as $item)
-                                    <option value="{{ $item->id }}" {{ $item->id = auth('users')->user()->genders_id ?
-                                        'selected' : '' }}>
-                                        {{ $item->name }}</option>
-                                    @endforeach
+                                <select name="genders_id" class="form-control">
+                                    <option value="1" {{ auth('users')->user()->genders_id == 1 ? 'selected' : ''
+                                        }}>Nam</option>
+                                    <option value="2" {{ auth('users')->user()->genders_id == 2 ? 'selected' : ''
+                                        }}>Nữ</option>
                                 </select>
                             </div>
                         </div>
@@ -138,13 +137,9 @@
 
                     </form>
 
-
                 </div>
 
-
             </div>
-
-
 
 
             <div class="card d-none" id="user-cart">

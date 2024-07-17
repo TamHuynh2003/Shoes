@@ -326,7 +326,6 @@ class AdminsController extends Controller
             $admins->avatar = $path;
         }
 
-        $admins->salary = $req->salary;
         $admins->login_at = $req->login_at;
 
         $admins->genders_id = $req->genders_id;
@@ -385,7 +384,6 @@ class AdminsController extends Controller
         $admins->password = Hash::make($req->password);
 
         $admins->birth_date = $req->birth_date;
-        $admins->salary = $req->salary;
 
         $admins->genders_id = $req->genders_id;
         $admins->status_id = $req->status_id;
@@ -431,18 +429,20 @@ class AdminsController extends Controller
     {
         $admins = Admins::find($id);
 
-        if (!$admins) {
-            return redirect()->route('admins.index')->with('alert', "Tài khoản quản trị viên không tồn tại!!");
+        if ($admins->status_id == 2) {
+            $admins->status_id = 1;
+            $admins->save();
+            return redirect()->route('admins.index')->with('alert', 'Mở khóa tài khoản thành công');
         }
 
         if ($admins->status_id == 2) {
-            return redirect()->route('admins.index')->with('alert', 'Tài khoản đã được xóa trước đó rồi!!');
+            return redirect()->route('admins.index')->with('alert', 'Tài khoản đã được khóa trước đó rồi!!');
         }
 
         $admins->status_id = 2;
         $admins->save();
 
-        return redirect()->route('admins.index')->with('alert', 'Xóa tài khoản quản trị viên thành công');
+        return redirect()->route('admins.index')->with('alert', 'Khóa tài khoản thành công');
     }
 
     public function viewPDF()

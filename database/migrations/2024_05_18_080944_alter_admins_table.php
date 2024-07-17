@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::table('admins', function (Blueprint $table) {
 
-            $table->foreignId('genders_id')->after('login_at')->constrained(
+            $table->foreignId('genders_id')->default(1)->after('login_at')->constrained(
                 table: 'genders',
                 indexName: 'admins_genders_id'
             );

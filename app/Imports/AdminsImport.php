@@ -22,7 +22,6 @@ class AdminsImport implements ToCollection
                 'username' => $row[4],
                 'password' => $row[5],
                 'salary' => $row[6],
-                'genders_id' => $row[7],
             ]);
         }
     }

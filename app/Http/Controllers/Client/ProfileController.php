@@ -38,7 +38,7 @@ class ProfileController extends Controller
         $info->email = $request->email;
         $info->address = $request->address;
         $info->phone_number = $request->phone_number;
-        $info->birth_date = $request->birt_date;
+        $info->birth_date = $request->birth_date;
         $info->genders_id = $request->genders_id;
         $info->save();
         return redirect()->route('profile_user');

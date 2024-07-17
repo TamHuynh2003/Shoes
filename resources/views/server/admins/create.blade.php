@@ -95,16 +95,6 @@
                     </div>
 
                     <div class="mb-3">
-                        <label class="form-label">Lương</label>
-
-                        <input type="text" name="salary" value="{{ old('salary') }}" class="form-control">
-
-                        @error('salary')
-                        <div class="form-text" style="color:red;">{{ $message }}</div>
-                        @enderror
-                    </div>
-
-                    <div class="mb-3">
                         <label class="form-label">Ảnh Đại Diện</label>
 
                         <input type="file" name="avatar" value="{{ old('avatar') }}" class="form-control">

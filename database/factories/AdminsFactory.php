@@ -26,14 +26,6 @@ class AdminsFactory extends Factory
     private static $avatars = [
         'images/admins/1.jpg',
         'images/admins/2.jpg',
-        'images/admins/3.jpg',
-        'images/admins/4.jpg',
-        'images/admins/5.jpg',
-        'images/admins/6.jpg',
-        'images/admins/7.jpg',
-        'images/admins/8.jpg',
-        'images/admins/9.jpg',
-        'images/admins/10.jpg',
     ];
 
     public function definition(): array
@@ -56,62 +48,19 @@ class AdminsFactory extends Factory
                 'email' => 'tamhuynh@coza.com',
                 'fullname' => 'Tâm Huỳnh'
             ],
-            [
-                'username' => 'minhtam',
-                'email' => 'minhtam@coza.com',
-                'fullname' => 'Minh Tâm'
-            ],
-            [
-                'username' => 'huynhtam',
-                'email' => 'huynhtam@coza.com',
-                'fullname' => 'Huỳnh Tâm'
-            ],
-            [
-                'username' => 'tam2003',
-                'email' => 'tam2003@coza.com',
-                'fullname' => 'Tâm'
-            ],
-            [
-                'username' => 'huynhminhtam',
-                'email' => 'huynhminhtam@coza.com',
-                'fullname' => 'Huỳnh Minh Tâm'
-            ],
+
             [
                 'username' => 'truongnguyen',
                 'email' => 'truongnguyen@coza.com',
                 'fullname' => 'Trường Nguyễn'
             ],
-            [
-                'username' => 'minhtruong',
-                'email' => 'minhtruong@coza.com',
-                'fullname' => 'Minh Trường'
-            ],
-            [
-                'username' => 'nguyentruong',
-                'email' => 'nguyentruong@coza.com',
-                'fullname' => 'Nguyễn Trường'
-            ],
-            [
-                'username' => 'truong2003',
-                'email' => 'truong2003@coza.com',
-                'fullname' => 'Trường'
-            ],
-            [
-                'username' => 'nguyenminhtruong',
-                'email' => 'nguyenminhtruong@coza.com',
-                'fullname' => 'Nguyễn Minh Trường'
-            ],
+
         ];
 
-        $index = $this->faker->unique()->numberBetween(0, 9);
+        $index = $this->faker->unique()->numberBetween(0, 1);
 
         $avatar = array_splice(self::$avatars, array_rand(self::$avatars), 1)[0];
 
-        $salaries = [
-            20000000, 25000000, 30000000, 15000000, 17000000, 10000000, 26000000, 27000000, 28000000, 29000000, 18000000, 16000000
-        ];
-
-        $salary = $salaries[array_rand($salaries)];
         return [
             'fullname' => $admins[$index]['fullname'],
             'email' => $admins[$index]['email'],
@@ -125,7 +74,6 @@ class AdminsFactory extends Factory
             'birth_date' => $this->faker->dateTimeBetween('-60 years', '-18 years')->format('Y-m-d'),
             'avatar' => $avatar,
 
-            'salary' => $salary,
             'login_at' => $this->faker->dateTimeThisYear(),
 
             'genders_id' => 1,

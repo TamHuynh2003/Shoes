@@ -241,8 +241,8 @@ Route::prefix('/admin')->group(function () {
 
             Route::get('/chi-tiet/{id}', [UsersController::class, 'show'])->name('show');
 
-            Route::get('/cap-nhat/{id}', [UsersController::class, 'edit'])->name('edit');
-            Route::post('/cap-nhat/{id}', [UsersController::class, 'update']);
+            // Route::get('/cap-nhat/{id}', [UsersController::class, 'edit'])->name('edit');
+            // Route::post('/cap-nhat/{id}', [UsersController::class, 'update']);
 
             Route::get('/delete/{id}', [UsersController::class, 'destroy'])->name('delete');
 

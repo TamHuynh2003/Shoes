@@ -46,7 +46,7 @@
                                     <div class="d-flex align-items-stretch">
                                         <!--Edit-->
                                         <a class="btn btn-sm btn-outline-primary border me-2" data-bs-toggle="tooltip"
-                                            href="{{ route('categories.update', ['id' => $categories->id]) }}"
+                                            href="{{ route('categories.edit', ['id' => $categories->id]) }}"
                                             data-bs-original-title="Khôi Phục">
                                             <i class="fe fe-rotate-ccw "></i>
                                         </a>
