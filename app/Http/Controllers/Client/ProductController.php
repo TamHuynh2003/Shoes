@@ -38,7 +38,8 @@ class ProductController extends Controller
         $size = Sizes::all();
         $color = Colors::all();
         $product = Products::find($id); // Tìm sản phẩm theo ID
-        return view('client.product_detail.index', compact('product', 'size', 'color'));
+        $products = Products::where('categories_id', $product->categories_id)->with('images')->get(); // Tìm sản phẩm theo ID
+        return view('client.product_detail.index', compact('product', 'size', 'color', 'products'));
     }
 
     public function search(Request $request)

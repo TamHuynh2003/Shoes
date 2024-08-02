@@ -3,11 +3,14 @@
 namespace App\Http\Controllers\Client;
 
 use App\Http\Controllers\Controller;
-use App\Models\Users;
-use App\Models\Orders;
-use App\Models\Genders;
-use App\Models\Comments;
 use Illuminate\Http\Request;
+use App\Models\Genders;
+use App\Models\Orders;
+use App\Models\Users;
+use App\Models\Comments;
+use App\Models\ProductDetails;
+use App\Models\Products;
+use App\Models\CustomersCarts;
 use Illuminate\Support\Facades\Hash;
 
 class ProfileController extends Controller

@@ -155,16 +155,19 @@
 
                     <div class="block2">
                         <div class="block2-pic hov-img0">
-                            <img src="{{ asset($item->images->first()->url) }}" alt="IMG-PRODUCT">
-                            <a href="#"
-                                class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
-                                Xem Giày
+                            <a href="{{ route('product_detail', ['id' => $item->id]) }}">
+                                <img src="{{ asset($item->images->first()->url) }}" alt="IMG-PRODUCT">
+                                <a href="{{ route('wishlist_add', ['id' => $item->id]) }}"
+                                    class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
+                                    Xem Giày
+                                </a>
                             </a>
                         </div>
 
                         <div class="block2-txt flex-w flex-t p-t-14">
                             <div class="block2-txt-child1 flex-col-l ">
-                                <a href="" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
+                                <a href="{{ route('product_detail', ['id' => $item->id]) }}"
+                                    class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
                                     {{ $item->name }}
                                 </a>
 

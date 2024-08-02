@@ -23,8 +23,8 @@
                             <tr class="table_row">
                                 <td class="column-1">
                                     <div class="itemcart1">
-                                        <img src="{{ asset($item->images->first()->url) }}" alt="IMG-PRODUCT"
-                                            style="width: 80px;height: 100px;">
+                                        <img src="{{ asset($item->product_detail->product->images[0]->url) }}"
+                                            alt="IMG-PRODUCT" style="width: 80px;height: 100px;">
                                     </div>
                                 </td>
                                 <td class="column-2"> {{ $item->product_detail->product->name }}</td>
@@ -116,7 +116,8 @@
 
                         <div class="size-209 p-r-18 p-r-0-sm w-full-ssm">
                             <p class="stext-111 cl6 p-t-2">
-
+                                There are no shipping methods available. Please double check your address, or contact us
+                                if you need any help.
                             </p>
                         </div>
                     </div>

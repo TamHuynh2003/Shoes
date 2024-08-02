@@ -109,20 +109,6 @@ use App\Http\Middleware\HomeAuthenticate;
 
 Route::prefix('/')->group(function () {
 
-    //
-    Route::get('/', [HomeController::class, 'index'])->name('home');
-    //
-    Route::get('/san-pham', [ProductController::class, 'index'])->name('products');
-    //
-    Route::get('/chi-tiet-san-pham/{id}', [ProductController::class, 'detail'])->name('product_detail');
-    //
-    Route::get('/tim-kiem', [ProductController::class, 'search'])->name('search');
-    //
-    Route::get('/blog', [BlogController::class, 'index'])->name('blog');
-    //
-    Route::get('/ve-chung-toi', [AboutController::class, 'index'])->name('about');
-
-    //
     Route::middleware(HomeAuthenticate::class)->group(function () {
 
         Route::get('/dang-ky', [UsersController::class, 'register'])->name('user_register');
@@ -136,22 +122,35 @@ Route::prefix('/')->group(function () {
     });
 
     //
+    Route::get('/', [HomeController::class, 'index'])->name('home');
+    //
+    Route::get('/san-pham', [ProductController::class, 'index'])->name('products');
+    //
+    Route::get('/chi-tiet-san-pham/{id}', [ProductController::class, 'detail'])->name('product_detail');
+    //
+    Route::get('/tim-kiem', [ProductController::class, 'search'])->name('search');
+    //
+    Route::get('/blog', [BlogController::class, 'index'])->name('blog');
+
+    Route::get('/lien-he', [ContactController::class, 'index'])->name('contact');
+    Route::post('/lien-he', [ContactController::class, 'contact_handle'])->name('contact_handle');
+
+    //
+    Route::get('/ve-chung-toi', [AboutController::class, 'index'])->name('about');
+
     Route::middleware(LoginAuthenticate::class)->group(function () {
         Route::post('/dang-xuat', [UsersController::class, 'logout'])->name('user_logout');
 
         Route::get('/trang-ca-nhan', [UsersController::class, 'profile'])->name('user_profile');
         Route::post('/trang-ca-nhan', [UsersController::class, 'updateProfile'])->name('updateProfile');
 
-        Route::get('/lien-he', [ContactController::class, 'index'])->name('contact');
-        Route::post('/lien-he', [ContactController::class, 'contact_handle'])->name('contact_handle');
         //
         Route::get('/gio-hang', [CartController::class, 'index'])->name('cart');
         Route::post('/them-gio-hang/{id}', [CartController::class, 'add'])->name('add_cart');
         Route::post('/cap-nhat-gio-hang/{id}', [CartController::class, 'update'])->name('update-cart');
         Route::post('/xoa-gio-hang', [CartController::class, 'delete'])->name('delete_cart');
         Route::post('/xoa-all-gio-hang', [CartController::class, 'clear'])->name('delete_all_cart');
-        Route::post('/tang-so-luong', [CartController::class, 'tangsoluong'])->name('tang-so-luong');
-        Route::post('/giam-so-luong', [CartController::class, 'giamsoluong'])->name('giam-so-luong');
+
         //
         Route::get('/yeu-thich', [WishlistController::class, 'index'])->name('wishlist');
         Route::get('/them-yeu-thich/{id}', [WishlistController::class, 'add'])->name('wishlist_add');
@@ -170,7 +169,11 @@ Route::prefix('/')->group(function () {
         Route::post('/chinh-sua-thong-tin', [ProfileController::class, 'update_profile'])->name('update_profile_user');
         Route::post('/chinh-sua-mat-khau', [ProfileController::class, 'update_password'])->name('update_password_profile_user');
         Route::post('/chinh-sua-anh', [ProfileController::class, 'update_avatar'])->name('update_avatar_profile_user');
+        //
         Route::post('/huy-don', [ProfileController::class, 'remove_order'])->name('remove_order');
+        //
+        Route::post('/tang-so-luong', [CartController::class, 'tangsoluong'])->name('tang-so-luong');
+        Route::post('/giam-so-luong', [CartController::class, 'giamsoluong'])->name('giam-so-luong');
     });
 });
 

@@ -141,8 +141,8 @@
 
             </div>
 
-
             <div class="card d-none" id="user-cart">
+                <h2>Danh Sách Đơn Hàng</h2>
                 @foreach ($orders as $order)
                 <div class="card-body">
                     <h4 class="card-title">Đơn Hàng {{ $order->id }}</h4>
@@ -187,13 +187,10 @@
                 @endforeach
             </div>
 
-
-
-
             <div class="card d-none" id="user-rating">
                 <div class="card-body">
                     <h4 class="card-title">Đánh Giá</h4>
-                    <p>Thông tin đánh giá sẽ được hiển thị ở đây.</p>
+                    {{-- <p>Thông tin đánh giá sẽ được hiển thị ở đây.</p> --}}
                 </div>
             </div>
         </div>
@@ -203,19 +200,16 @@
 <script>
     function showSection(sectionId) {
 
-            document.getElementById('user-profile').classList.add('d-none');
-            document.getElementById('user-cart').classList.add('d-none');
-            document.getElementById('user-rating').classList.add('d-none');
+        document.getElementById('user-profile').classList.add('d-none');
+        document.getElementById('user-cart').classList.add('d-none');
+        document.getElementById('user-rating').classList.add('d-none');
 
+        var links = document.querySelectorAll('.list-group-item');
+        links.forEach(link => link.classList.remove('active'));
 
-            var links = document.querySelectorAll('.list-group-item');
-            links.forEach(link => link.classList.remove('active'));
+        document.getElementById(sectionId).classList.remove('d-none');
 
-
-            document.getElementById(sectionId).classList.remove('d-none');
-
-
-            event.target.classList.add('active');
-        }
+        event.target.classList.add('active');
+    }
 </script>
 @endsection

@@ -8,9 +8,8 @@
     </div>
 </div>
 
-<div class="main">
-    <div class="row " style="display: flex;flex-wrap:nowrap ">
-
+<div class="container">
+    <div class="row align-items-center">
         <label for="dateStart">Ngày Bắt Đầu</label>
         <div class="col-3">
             <div class="input-group date datePicker">
@@ -39,8 +38,8 @@
             <button class="btn btn-primary" id="btnSearch">Tìm</button>
         </div>
     </div>
-</div>
 
+</div>
 <div class="row">
 
     <div class="col-md-12 col-lg-6 col-xl-3">

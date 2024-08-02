@@ -22,15 +22,35 @@ class CartController extends Controller
     }
     public function add(Request $request, $id)
     {
+        if ($request->size == null) {
+            return redirect()->route('product_detail', ['id' => $id])->with('alert', 'Không được bỏ trống kích thước');
+        }
+        if ($request->color == null) {
+            return redirect()->route('product_detail', ['id' => $id])->with('alert', 'Không được bỏ trống màu sắc');
+        }
+        $cart = CustomersCarts::where('users_id', auth('users')->user()->id)->get();
+        foreach ($cart as $item) {
+            $products = Products::find($id);
+            $product_detail = ProductDetails::where('product_id', $products->id)
+                ->where('color_id', $request->color)
+                ->where('size_id', $request->size)
+                ->where('quantity', ">=", $request->quantity)
+                ->first();
+            if ($product_detail == null) {
+                return redirect()->route('product_detail', ['id' => $id])->with('alert', 'Sản phẩm hết hàng');
+            }
+            if ($item->product_detail_id == $product_detail->id) {
+                $item->quantity += $request->quantity;
+                $item->save();
+                return redirect()->route('cart')->with('alert', 'Cập nhật số lượng sản phẩm thành công');
+            }
+        }
         $products = Products::find($id);
         $product_detail = ProductDetails::where('product_id', $products->id)
             ->where('color_id', $request->color)
             ->where('size_id', $request->size)
             ->where('quantity', ">=", $request->quantity)
             ->first();
-        if ($product_detail == null) {
-            return "Sản phẩm đã hết hàng";
-        }
         $cart = new CustomersCarts();
         $cart->quantity = $request->quantity;
         $cart->users_id = auth('users')->user()->id;

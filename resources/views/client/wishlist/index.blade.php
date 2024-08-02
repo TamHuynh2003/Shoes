@@ -20,12 +20,12 @@
                             <tr class="table_row">
                                 <td class="column-1">
                                     <div class="itemcart1">
-                                        <img src="{{ asset($item->images->first()->url) }}" alt="IMG-PRODUCT"
+                                        <img src="{{ asset($item->product->images[0]->url) }}" alt="IMG-PRODUCT"
                                             style="width: 100px;height: 100px;">
                                     </div>
                                 </td>
                                 <td class="column-2">{{ $item->product->name }}</td>
-                                <td class="column-3">{{ number_format($item->selling_price) }}</td>
+                                <td class="column-3">{{ number_format($item->selling_price) }} VND</td>
                                 <td class="column-3">
                                     <form action="{{ route('wishlist_delete') }}" method="POST">
                                         @csrf
